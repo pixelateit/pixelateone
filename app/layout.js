@@ -1,6 +1,7 @@
 import { Oswald, Kings, Archivo, Archivo_Narrow } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
+import SmoothScroll from "@/context/SmoothScroll";
 
 const kings = Kings({
   variable: "--font-kings",
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${kings.variable} ${oswald.variable} ${archivo.variable} ${archivoNarrow.variable} antialiased relative`}
       >
+        <SmoothScroll />
         <Header />
         {children}
       </body>

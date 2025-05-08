@@ -86,16 +86,16 @@ export default function Hero() {
             style={{
               fontSize: "clamp(40px, 4vw, 70px)",
               lineHeight: "clamp(40px, 4vw, 70px)",
-              letterSpacing: "-0.05em",
+              letterSpacing: "-0.04em",
             }}
           >
-            Whether you're launching a blog, an e-commerce empire, or a fan club
-            for cat videos,
+            Whether you're launching a blog, building an e-commerce platform, or
+            creating a niche community,
             <span className="text-white">
               {" "}
-              I'm here to provide you with the digital wizardry
+              I bring the digital expertise to make your vision stand out
             </span>{" "}
-            that makes your project shine brighter than a supernova.
+            with clarity, impact, and precision.
           </p>
         </div>
       </div>

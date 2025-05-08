@@ -2,6 +2,11 @@ import Image from "next/image";
 import DesignS from "@/public/home/designS.webp";
 import FunctionalS from "@/public/home/FunctionalS.webp";
 import HandWithCapsule from "@/public/home/handWithCapsule.webp";
+import Image1 from "@/public/home/image.webp";
+import Image2 from "@/public/home/image-1.webp";
+import Image3 from "@/public/home/image-2.webp";
+import Image4 from "@/public/home/image-3.webp";
+import Image5 from "@/public/home/image-4.webp";
 
 export default function Section2() {
   return (
@@ -152,6 +157,55 @@ export default function Section2() {
           <div className="bg-[#D0D0D0] h-[1px] w-[100px]"></div>
           <div className="bg-[#D0D0D0] h-[180px] w-[1px]"></div>
           <div className="bg-[#D0D0D0] h-[1px] w-[60px]"></div>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-center justify-center w-full">
+        <div className="flex flex-row items-center justify-center gap-2.5 p-2.5 w-full">
+          <div className="w-full rounded-xl overflow-hidden">
+            <Image
+              src={Image1}
+              alt=""
+              loading="lazy"
+              className="w-full h-full duration-300 hover:scale-105 aspect-auto"
+            />
+          </div>
+          <div className="w-full rounded-xl overflow-hidden">
+            <Image
+              src={Image2}
+              alt=""
+              loading="lazy"
+              className="w-full h-full duration-300 hover:scale-105 aspect-auto"
+            />
+          </div>
+          <div className="w-full rounded-xl overflow-hidden">
+            <Image
+              src={Image3}
+              alt=""
+              loading="lazy"
+              className="w-full h-full duration-300 hover:scale-105 aspect-auto"
+            />
+          </div>
+          <div className="w-full rounded-xl overflow-hidden">
+            <Image
+              src={Image4}
+              alt=""
+              loading="lazy"
+              className="w-full h-full duration-300 hover:scale-105 aspect-auto"
+            />
+          </div>
+          <div className="w-full rounded-xl overflow-hidden">
+            <Image
+              src={Image5}
+              alt=""
+              loading="lazy"
+              className="w-full h-full duration-300 hover:scale-105 aspect-auto"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col items-center mt-16">
+          <div className="bg-[#D0D0D0] h-[1px] w-[60px]"></div>
+          <div className="bg-[#D0D0D0] h-[180px] w-[1px]"></div>
         </div>
       </div>
     </section>
