@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
+import { useGSAPAnimations } from "@/hooks/useGSAPAnimations";
 import Image from "next/image";
 import GradientImg from "@/public/home/GradientImg2.webp";
 
@@ -10,36 +10,35 @@ export default function WaveBlendUp() {
   const imgUp = useRef(null);
   const triggerUp = useRef(null);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useGSAPAnimations({
+    animations: [
+      () => {
+        if (!imgUp.current || !triggerUp.current) return;
 
-    gsap.fromTo(
-      imgUp.current,
-      { scaleY: 0 },
-      {
-        scaleY: 8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: triggerUp.current,
-          start: "70% 80%",
-          end: "bottom 20%",
-          scrub: true,
-          markers: false,
-        },
-      }
-    );
+        gsap.fromTo(
+          imgUp.current,
+          { scaleY: 0 },
+          {
+            scaleY: 16,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: triggerUp.current,
+              start: "70% 80%",
+              end: "bottom 20%",
+              scrub: true,
+              markers: false,
+            },
+          }
+        );
 
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+        // cleanup
+        return () => {
+          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        };
+      },
+    ],
+    dependencies: [],
+  });
 
   return (
     <div
@@ -61,7 +60,7 @@ export default function WaveBlendUp() {
                 <Image
                   src={GradientImg}
                   alt="Gradient"
-                  loading="lazy"
+                  priority
                   className="pointer-events-none h-full grow origin-bottom-left"
                   style={{ color: "transparent" }}
                 />

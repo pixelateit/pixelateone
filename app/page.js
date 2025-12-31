@@ -1,13 +1,25 @@
-import Hero from "@/components/hero";
-import Section2 from "@/components/section2";
-import Section3 from "@/components/section3";
+import Home from "@/components/Home";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import HomeSideMenus from "@/components/HomeSideMenus";
+import BlurWindow from "@/components/BlurWindow";
 
-export default function Home() {
+export default function Page() {
   return (
-    <div>
-      <Hero />
-      <Section2 />
-      <Section3 />
-    </div>
+    <>
+      <HomeSideMenus />
+      <BlurWindow />
+      <Header />
+      <div
+        id="smooth-wrapper"
+        className="overflow-x-hidden w-full"
+        style={{ zIndex: 5 }}
+      >
+        <div id="smooth-content">
+          <Home />
+          <Footer />
+        </div>
+      </div>
+    </>
   );
 }

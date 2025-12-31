@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useLayoutEffect } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsapConfig";
 import Image from "next/image";
 import signatureImg from "@/public/home/Signature.svg";
 

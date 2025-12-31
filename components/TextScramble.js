@@ -28,7 +28,7 @@ export default function TextScramble({ children }) {
         }
 
         iterations += 1 / 3;
-      }, 50);
+      }, 20);
     };
 
     if (element) {

@@ -1,56 +1,49 @@
+// context/SmoothScroll.js
 "use client";
 
 import { useLayoutEffect } from "react";
-import Lenis from "lenis";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import ScrollSmoother from "gsap/ScrollSmoother";
+import { usePathname } from "next/navigation";
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function SmoothScroll() {
+  const pathname = usePathname();
+
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    const wrapper = document.querySelector("#smooth-wrapper");
+    const content = document.querySelector("#smooth-content");
 
-    const lenis = new Lenis({
-      duration: 1.8,
-      easing: (t) => Math.sin((t * Math.PI) / 2),
-      // ease: "power1.out",
-      // direction: "vertical",
-      // gestureDirection: "vertical",
-      smooth: true,
-      lerp: 0.09,
-      smoothWheel: true,
+    // 🛡️ Prevent initializing if DOM elements not yet present
+    if (!wrapper || !content) return;
+
+    // 🔁 Kill previous instance if any
+    const existing = ScrollSmoother.get();
+    if (existing) existing.kill();
+
+    const smoother = ScrollSmoother.create({
+      wrapper,
+      content,
+      smooth: 5,
+      effects: true,
+      smoothTouch: 1.5,
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    const refreshTimeout = setTimeout(() => {
+      smoother.refresh();
+    }, 100);
 
-    lenis.on("scroll", ScrollTrigger.update);
-
-    ScrollTrigger.scrollerProxy(document.body, {
-      scrollTop(value) {
-        return value !== undefined ? lenis.scrollTo(value) : lenis.scroll;
-      },
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-      pinType: document.body.style.transform ? "transform" : "fixed",
+    window.addEventListener("load", () => {
+      ScrollTrigger.refresh();
     });
-
-    // No lenis.update() here — just refresh
-    ScrollTrigger.refresh();
 
     return () => {
-      lenis.destroy();
-      ScrollTrigger.kill();
+      clearTimeout(refreshTimeout);
+      smoother.kill();
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

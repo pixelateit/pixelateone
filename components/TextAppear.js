@@ -1,61 +1,64 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
+import { useRef } from "react";
+import { gsap, ScrollTrigger, SplitText } from "@/lib/gsapConfig";
+import { useGSAPAnimations } from "@/hooks/useGSAPAnimations";
 
 export default function TextAppear({
   children,
   classname,
   start,
   end,
+  duration,
+  scrub,
+  delay,
   splittype,
 }) {
   const ref = useRef(null);
+  const splitRef = useRef(null);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, SplitText);
+  useGSAPAnimations({
+    animations: [
+      () => {
+        if (!ref.current) return;
 
-    const split = new SplitText(ref.current, {
-      type: "chars, words",
-    });
+        document.fonts.ready.then(() => {
+          splitRef.current = new SplitText(ref.current, {
+            type: "chars, words",
+          });
 
-    let splitText;
-    if (splittype == "chars") {
-      splitText = split.chars;
-    } else {
-      splitText = split.words;
-    }
+          const splitText =
+            splittype === "chars"
+              ? splitRef.current.chars
+              : splitRef.current.words;
 
-    gsap.from(splitText, {
-      opacity: 0,
-      y: 20,
-      filter: "blur(10px)",
-      stagger: 0.08,
-      duration: 0.5,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ref.current,
-        start: start || "top 65%",
-        end: end || "top 20%",
-        scrub: true,
-        markers: false,
+          gsap.from(splitText, {
+            opacity: 0,
+            y: 20,
+            filter: "blur(10px)",
+            stagger: 0.08,
+            duration: duration || 0.5,
+            delay: delay ?? 0,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ref.current,
+              start: start ?? "top 65%",
+              end: end ?? "top 20%",
+              scrub: scrub ?? true,
+              markers: false,
+            },
+          });
+        });
+
+        // cleanup
+        return () => {
+          splitRef.current?.revert(); // cleanup SplitText
+          gsap.killTweensOf(splitRef.current?.chars);
+        };
       },
-    });
-
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      split.revert();
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [end, start, splittype]);
+    ],
+    dependencies: [end, start, splittype, scrub, duration, delay],
+  });
 
   return (
     <span className={classname} ref={ref}>
