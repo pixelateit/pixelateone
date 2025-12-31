@@ -1,5 +1,5 @@
 import BlurWindow from "@/components/BlurWindow";
-import Header from "@/components/Header";
+import Header from "@/components/header";
 
 export const metadata = {
   title: "PIXELATE - Work",

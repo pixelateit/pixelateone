@@ -1,5 +1,5 @@
 import BlurWindow from "@/components/BlurWindow";
-import Header from "@/components/Header";
+import Header from "@/components/header";
 
 export default function WorkPageLayout({ children }) {
   return (

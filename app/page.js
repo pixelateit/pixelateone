@@ -1,5 +1,5 @@
 import Home from "@/components/Home";
-import Header from "@/components/Header";
+import Header from "@/components/header";
 import Footer from "@/components/Footer";
 import HomeSideMenus from "@/components/HomeSideMenus";
 import BlurWindow from "@/components/BlurWindow";
