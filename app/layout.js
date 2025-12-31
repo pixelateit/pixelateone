@@ -8,6 +8,7 @@ import FirebaseAnalyticsProvider from "@/components/FirebaseAnalyticsProvider";
 
 const kings = Kings({
   variable: "--font-kings",
+  subsets: ["latin"],
   weight: "400",
 });
 
