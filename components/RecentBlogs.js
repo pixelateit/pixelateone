@@ -46,20 +46,18 @@ export default function RecentBlogs({ id }) {
 
   const recentBlogs = filteredBlogs.slice(0, 3);
 
-  console.log(id);
-  console.log(recentBlogs);
   return (
     <div className="w-full flex justify-center pt-16">
       <div className="w-full max-w-[1080px] flex flex-col items-center gap-6">
         <h2
           className="w-full font-bold flex flex-row"
-          style={{ fontSize: "clamp(18px, 2.16vw, 40px)" }}
+          style={{ fontSize: "clamp(24px, 2.16vw, 40px)" }}
         >
           <span
             className="text-[#242222] font-bold font-archivo-narrow"
             style={{
               letterSpacing: "-0.05em",
-              lineHeight: "clamp(18px, 2.16vw, 40px)",
+              lineHeight: "clamp(24px, 2.16vw, 40px)",
             }}
           >
             Recent
@@ -67,8 +65,8 @@ export default function RecentBlogs({ id }) {
           <span
             className="text-[#242222] font-kings font-normal text-[84px]"
             style={{
-              fontSize: "clamp(20px, 2.375vw, 42px)",
-              lineHeight: "clamp(25px, 2.5vw, 50px)",
+              fontSize: "clamp(26px, 2.375vw, 42px)",
+              lineHeight: "clamp(32px, 2.5vw, 50px)",
             }}
           >
             Blogs
@@ -82,7 +80,7 @@ export default function RecentBlogs({ id }) {
                 <Link
                   href={`/blogs/${blog.slug}`}
                   key={blog._id}
-                  className="w-full max-w-1/3 flex flex-col gap-3 group cursor-pointer"
+                  className="w-full md:max-w-1/3 flex flex-col gap-3 group cursor-pointer"
                 >
                   <div className="w-full min-h-32 overflow-hidden h-auto">
                     {blog.thumbnail && (

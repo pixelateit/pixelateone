@@ -98,7 +98,7 @@ export default function AboutSection() {
           <div className="w-full h-[600px] md:h-[720px] relative" ref={cont}>
             <div
               ref={postImg}
-              className="absolute top-1/2 -translate-y-1/2 origin-top-right md:-left-20 md:rotate-[-12deg] w-[480px]"
+              className="absolute top-1/2 -translate-y-1/2 origin-top-right md:-left-20 md:rotate-[-12deg] w-[360px] md:w-[480px]"
             >
               <Image
                 src={MyPhoto}
@@ -407,11 +407,11 @@ export default function AboutSection() {
 
       <div className="w-full px-2.5 mt-[140px]">
         <div className="w-full flex flex-col">
-          <div className="w-full flex flex-row">
+          <div className="w-full flex flex-col md:flex-row">
             <button
               onClick={() => setToggleOn(0)}
               className={
-                "w-[460px] flex items-center justify-center h-[60px] relative text-xl font-archivo font-bold uppercase cursor-pointer " +
+                "w-full lg:w-[460px] flex items-center justify-center h-[60px] relative text-xl font-archivo font-bold uppercase cursor-pointer " +
                 (toggleOn === 0
                   ? "bg-white text-[#242222]"
                   : "bg-[#881406] text-[#C67065]")
@@ -424,13 +424,13 @@ export default function AboutSection() {
                 alt="EdgeRW"
                 width={120}
                 height={60}
-                className="absolute top-0 right-[-120px]"
+                className="absolute hidden md:block top-0 right-[-120px]"
               />
             </button>
             <button
               onClick={() => setToggleOn(1)}
               className={
-                "w-[460px] flex items-center justify-center h-[60px] relative text-xl font-archivo font-bold uppercase cursor-pointer " +
+                "w-full lg:w-[460px] flex items-center justify-center h-[60px] relative text-xl font-archivo font-bold uppercase cursor-pointer " +
                 (toggleOn === 1
                   ? "bg-white text-[#242222]"
                   : "bg-[#881406] text-[#C67065]")
@@ -443,18 +443,18 @@ export default function AboutSection() {
                 alt="EdgeRW"
                 width={120}
                 height={60}
-                className="absolute top-0 right-[-120px]"
+                className="absolute hidden md:block top-0 right-[-120px]"
               />
             </button>
           </div>
 
           <div
             className={
-              "w-full bg-white flex-row items-center min-h-[480px] " +
+              "w-full bg-white flex-col lg:flex-row items-center min-h-[480px] " +
               (toggleOn === 0 ? "flex" : "hidden")
             }
           >
-            <div className="w-full px-[60px] flex items-center h-full py-10">
+            <div className="w-full p-6 lg:px-[60px] flex items-center h-full lg:py-10">
               <div className="w-full flex flex-col gap-3">
                 <span
                   className="w-full font-archivo-narrow font-medium text-base text-[#242222] uppercase"
@@ -486,7 +486,7 @@ export default function AboutSection() {
 
           <div
             className={
-              "w-full bg-white flex-row items-center min-h-[480px] " +
+              "w-full bg-white flex-col lg:flex-row items-center min-h-[480px] " +
               (toggleOn === 1 ? "flex" : "hidden")
             }
           >

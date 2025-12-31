@@ -104,7 +104,7 @@ export default function ModalSlider({ isOpen, onClose, card }) {
         >
           <button
             onClick={() => closeCard()}
-            className="absolute top-0.5 right-0.5 bg-white hover:bg-gray-300/40 text-black text-2xl flex items-center justify-center w-10 h-10 border border-[#242222]/50 cursor-pointer transition-all duration-300 group"
+            className="absolute top-0.5 right-0.5 bg-white hover:bg-gray-300/40 text-black text-2xl flex items-center justify-center w-10 h-10 border border-[#242222]/50 cursor-pointer transition-all duration-300 group z-20"
           >
             <X className="w-6 h-6 group-hover:w-5 group-hover:h-5 transition-all duration-300" />
           </button>
@@ -162,28 +162,28 @@ export default function ModalSlider({ isOpen, onClose, card }) {
 
           <div className="w-full h-full flex flex-col pe-2.5">
             <div className="w-full flex flex-row items-center justify-between">
-              <div className="w-fit flex flex-row items-center gap-1">
-                <span className="font-archivo-narrow font-medium text-base uppercase text-[#242222]/50">
+              <div className="w-fit flex flex-col md:flex-row md:items-center md:gap-1">
+                <span className="font-archivo-narrow font-medium text-sm uppercase text-[#242222]/50">
                   Company:
                 </span>
-                <span className="w-fit font-oswald font-medium text-md uppercase text-[#242222] transition-all duration-300">
+                <span className="w-fit font-oswald font-medium text-sm uppercase text-[#242222] transition-all duration-300">
                   {card.company}
                 </span>
               </div>
-              <div className="w-fit flex flex-row items-center gap-1">
-                <span className="font-archivo-narrow font-medium text-base uppercase text-[#242222]/50">
+              <div className="w-fit flex flex-col md:flex-row md:items-center md:gap-1">
+                <span className="font-archivo-narrow font-medium text-sm uppercase text-[#242222]/50">
                   Date:
                 </span>
-                <span className="w-fit font-oswald font-medium text-md uppercase text-[#242222] transition-all duration-300">
+                <span className="w-fit font-oswald font-medium text-sm uppercase text-[#242222] transition-all duration-300">
                   {formattedDate(card.date)}
                 </span>
               </div>
             </div>
             <div className="w-full h-full flex flex-col gap-3 pt-5">
-              <h2 className="font-archivo text-2xl font-semibold text-[#242222]">
+              <h2 className="font-archivo text-xl md:text-2xl font-semibold text-[#242222]">
                 {card.title}
               </h2>
-              <p className="font-archivo text-base font-normal text-[#242222]/50">
+              <p className="font-archivo text-sm md:text-base font-normal text-[#242222]/50">
                 {card.description}
               </p>
             </div>

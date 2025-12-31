@@ -97,7 +97,10 @@ export default function QuoteSlider() {
             const quote = quotes[current];
 
             return (
-              <div key={quote._id} className="w-full flex flex-row">
+              <div
+                key={quote._id}
+                className="w-full flex flex-col-reverse lg:flex-row"
+              >
                 <div className="w-full h-full">
                   <Image
                     ref={imageRef}

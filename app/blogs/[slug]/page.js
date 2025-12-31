@@ -140,7 +140,7 @@ export default function BlogReadPage() {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <section className="w-full flex flex-col justify-center items-center px-2.5 py-32 relative">
+      <section className="w-full flex flex-col justify-center items-center px-5 py-32 relative">
         <div className="w-full flex flex-row max-w-[880px] items-center md:items-start lg:me-[200px]">
           <div className="w-[240px] hidden relative md:block">
             <div

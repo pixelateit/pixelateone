@@ -311,7 +311,7 @@ export default function Hero() {
                         (01)
                       </span>
                       <span
-                        className="font-oswald uppercase text-white font-medium"
+                        className="font-oswald uppercase break-keep text-white font-medium"
                         style={{
                           fontSize: "clamp(10px, 1.5vw, 14px)",
                           lineHeight: "clamp(16px, 1.75vw, 20px)",
@@ -332,7 +332,7 @@ export default function Hero() {
                         (02)
                       </span>
                       <span
-                        className="font-oswald uppercase text-white font-medium"
+                        className="font-oswald uppercase break-keep text-white font-medium"
                         style={{
                           fontSize: "clamp(10px, 1.5vw, 14px)",
                           lineHeight: "clamp(16px, 1.75vw, 20px)",
@@ -353,7 +353,7 @@ export default function Hero() {
                         (03)
                       </span>
                       <span
-                        className="font-oswald uppercase text-white font-medium"
+                        className="font-oswald uppercase break-keep text-white font-medium"
                         style={{
                           fontSize: "clamp(10px, 1.5vw, 14px)",
                           lineHeight: "clamp(16px, 1.75vw, 20px)",
@@ -374,7 +374,7 @@ export default function Hero() {
                         (04)
                       </span>
                       <span
-                        className="font-oswald uppercase text-white font-medium"
+                        className="font-oswald uppercase break-keep text-white font-medium"
                         style={{
                           fontSize: "clamp(10px, 1.5vw, 14px)",
                           lineHeight: "clamp(16px, 1.75vw, 20px)",
@@ -384,7 +384,7 @@ export default function Hero() {
                       </span>
                     </div>
 
-                    <div className="w-fit flex-row flex items-center gap-1">
+                    <div className="w-fit hidden flex-row md:flex items-center gap-1">
                       <span
                         className="font-kings h-fit text-white pt-1"
                         style={{
@@ -395,7 +395,7 @@ export default function Hero() {
                         (05)
                       </span>
                       <span
-                        className="font-oswald uppercase text-white font-medium"
+                        className="font-oswald uppercase break-keep text-white font-medium"
                         style={{
                           fontSize: "clamp(10px, 1.5vw, 14px)",
                           lineHeight: "clamp(16px, 1.75vw, 20px)",
