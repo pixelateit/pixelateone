@@ -68,10 +68,10 @@ export default function WorkPage({ index, title }) {
                 <b className="font-semibold text-[#242222]">
                   schedule sessions, track client progress, set goals, and
                   communicate securely
-                </b>{" "}
-                with clients. The platform also provides data analytics for
-                data-driven decision-making. It's a valuable tool for
-                professional coaches.
+                </b>
+                {
+                  " with clients. The platform also provides data analytics for data-driven decision-making. It's a valuable tool for professional coaches."
+                }
               </p>
             </div>
 
@@ -130,9 +130,9 @@ export default function WorkPage({ index, title }) {
                 className="w-full aspect-auto"
               />
               <p className="w-full text-base font-normal font-archivo text-[#242222]">
-                Clean, contemporary typography ensures readability and a
-                polished look, embodying CoachOptima's mission of optimizing
-                performance and achieving goals.
+                {
+                  "Clean, contemporary typography ensures readability and a polished look, embodying CoachOptima's mission of optimizing performance and achieving goals."
+                }
               </p>
             </div>
           </div>

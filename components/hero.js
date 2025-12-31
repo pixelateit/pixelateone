@@ -577,7 +577,7 @@ export default function Hero() {
               <span className="font-kings capitalize">of</span> Me
             </span>
             <span className="text-white/60 font-medium font-archivo-narrow text-xs uppercase">
-              26°45'42.2"N 80°56'23.2"E
+              26°45&apos;42.2&quot;N 80°56&lsquo;23.2&quot;E
             </span>
           </div>
           <div className="w-full mb-[-1px]">
