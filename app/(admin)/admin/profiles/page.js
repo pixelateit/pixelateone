@@ -53,7 +53,6 @@ export default function ProfileAdminPage() {
 
   // delete handler
   const handleDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this profile?")) return;
     try {
       const res = await fetch(`/api/profiles/${id}`, {
         method: "DELETE",

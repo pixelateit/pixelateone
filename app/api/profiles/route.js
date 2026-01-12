@@ -66,6 +66,10 @@ export async function POST(req) {
     }
     await Promise.all(uploads);
     // Merge text fields and uploaded file URLs
+    if ("isActive" in textFields) {
+      textFields.isActive =
+        textFields.isActive === "true" || textFields.isActive === true;
+    }
     const newProfileData = { ...textFields, ...uploadedUrls };
     // Create new CompanyProfile document
     const newProfile = new CompanyProfile(newProfileData);

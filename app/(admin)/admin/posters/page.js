@@ -53,7 +53,6 @@ export default function PosterAdminPage() {
 
   // delete handler
   const handleDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this poster?")) return;
     try {
       const res = await fetch(`/api/posters/${id}`, {
         method: "DELETE",

@@ -12,9 +12,9 @@ const CompanyProfileSchema = new mongoose.Schema(
     description: { type: String },
     software: { type: String, default: "Figma" },
     date: { type: Date, default: Date.now },
+    isActive: { type: Boolean, default: false },
     thumbnail: {
       type: String,
-      default: "https://placehold.co/600/png",
     },
     sliderImages: [{ type: String }],
   },

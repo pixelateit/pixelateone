@@ -30,10 +30,28 @@ async function uploadFileToFirebase(file, folder) {
 
 function getFilePathFromUrl(url) {
   try {
-    const match = url.match(/\/([^?]+)\?/);
-    return match ? decodeURIComponent(match[1]) : null;
-  } catch (e) {
-    console.error("Failed to extract file path from URL:", url, e);
+    const decoded = decodeURIComponent(url);
+    const u = new URL(
+      decoded.startsWith("http") ? decoded : `https://${decoded}`
+    );
+
+    let path = "";
+
+    if (u.hostname === "storage.googleapis.com") {
+      const [, ...rest] = u.pathname.split("/").filter(Boolean);
+      path = rest.join("/");
+    } else {
+      path = u.pathname
+        .split("/")
+        .filter(Boolean)
+        .filter((p) => !p.includes("firebasestorage.app"))
+        .join("/");
+    }
+
+    // 🔥 CRITICAL FIX — convert encoded filename to real Firebase object name
+    return path.replace(/%20/g, " ");
+  } catch (err) {
+    console.error("Invalid Firebase URL:", url);
     return null;
   }
 }
@@ -242,7 +260,7 @@ export async function PUT(req, { params }) {
 export async function DELETE(req, { params }) {
   try {
     await dbConnect();
-    const { id } = params;
+    const { id } = await params;
 
     // 1️⃣ Get the Work before deletion
     const work = await WorkSchema.findById(id);

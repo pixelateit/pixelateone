@@ -63,8 +63,9 @@ export default function EditCompanyProfilePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, [loading]);
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // handle text
   const handleChange = (e) => {

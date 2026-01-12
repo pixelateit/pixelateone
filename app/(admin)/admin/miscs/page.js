@@ -44,7 +44,6 @@ export default function MiscellaneousAdminPage() {
 
   // delete handler
   const handleDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this misc project?")) return;
     try {
       const res = await fetch(`/api/miscs/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete project");

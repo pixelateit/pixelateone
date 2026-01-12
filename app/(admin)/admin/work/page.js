@@ -56,7 +56,6 @@ export default function WorkAdminPage() {
 
   // delete handler
   const handleDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this work?")) return;
     try {
       const res = await fetch(`/api/work/${id}`, {
         method: "DELETE",

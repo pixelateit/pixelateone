@@ -53,7 +53,6 @@ export default function BlogAdminPage() {
 
   // delete handler
   const handleDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this blog?")) return;
     try {
       const res = await fetch(`/api/blogs/${id}`, {
         method: "DELETE",

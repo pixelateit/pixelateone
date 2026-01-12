@@ -85,9 +85,6 @@ export default function ProfileCard({
                     >
                       <div className="w-full flex flex-row items-center justify-between">
                         <div className="w-fit flex flex-row items-center gap-1">
-                          <span className="font-archivo-narrow font-medium text-sm uppercase text-[#242222]/50">
-                            Company:
-                          </span>
                           <span
                             className="w-fit font-oswald font-medium text-base uppercase text-[#242222] transition-all duration-300"
                             style={{ letterSpacing: "-0.02em" }}
@@ -96,9 +93,6 @@ export default function ProfileCard({
                           </span>
                         </div>
                         <div className="w-fit flex flex-row items-center gap-1">
-                          <span className="font-archivo-narrow font-medium text-sm uppercase text-[#242222]/50">
-                            Date:
-                          </span>
                           <span
                             className="w-fit font-oswald font-medium text-base uppercase text-[#242222] transition-all duration-300"
                             style={{ letterSpacing: "-0.04em" }}
@@ -112,7 +106,7 @@ export default function ProfileCard({
                           className="w-full font-archivo font-bold text-lg text-[#242222]"
                           style={{
                             letterSpacing: "-0.02em",
-                            lineHeight: "20px",
+                            lineHeight: "1.2em",
                           }}
                         >
                           {title}
@@ -120,8 +114,8 @@ export default function ProfileCard({
                         <p
                           className="w-full mt-3 font-archivo font-normal text-base text-[#242222]/50"
                           style={{
-                            lineHeight: "1.2em",
-                            letterSpacing: "-0.02em",
+                            lineHeight: "1.25em",
+                            letterSpacing: "-0.01em",
                           }}
                         >
                           {description}

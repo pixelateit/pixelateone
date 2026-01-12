@@ -25,16 +25,39 @@ async function uploadFileToFirebase(file, folder) {
 
 // helper: extract Firebase path from URL
 function getPathFromUrl(url) {
-  const match = url.match(/\/([^?]+)\?/);
-  return match ? decodeURIComponent(match[1]) : null;
+  try {
+    const decoded = decodeURIComponent(url);
+    const u = new URL(
+      decoded.startsWith("http") ? decoded : `https://${decoded}`
+    );
+
+    let path = "";
+
+    if (u.hostname === "storage.googleapis.com") {
+      const [, ...rest] = u.pathname.split("/").filter(Boolean);
+      path = rest.join("/");
+    } else {
+      path = u.pathname
+        .split("/")
+        .filter(Boolean)
+        .filter((p) => !p.includes("firebasestorage.app"))
+        .join("/");
+    }
+
+    // 🔥 CRITICAL FIX — convert encoded filename to real Firebase object name
+    return path.replace(/%20/g, " ");
+  } catch (err) {
+    console.error("Invalid Firebase URL:", url);
+    return null;
+  }
 }
 
 export async function DELETE(_req, { params }) {
   try {
     await dbConnect();
-    const { id } = params;
+    const { id } = await params;
 
-    const deletedProfile = await CompanyProfile.findByIdAndDelete(id);
+    const deletedProfile = await CompanyProfile.findById(id);
 
     if (!deletedProfile) {
       return NextResponse.json(
@@ -42,43 +65,33 @@ export async function DELETE(_req, { params }) {
         { status: 404 }
       );
     }
-
-    // Delete thumbnail
+    const fileUrls = [];
     if (deletedProfile.thumbnail) {
-      const path = getPathFromUrl(deletedProfile.thumbnail);
-      if (path) {
-        await adminStorage
-          .file(path)
-          .delete()
-          .catch((err) => {
-            console.warn(
-              "Error deleting thumbnail from Firebase:",
-              err.message
-            );
-          });
-      }
+      fileUrls.push(deletedProfile.thumbnail);
+    }
+    if (deletedProfile.sliderImages?.length) {
+      fileUrls.push(...deletedProfile.sliderImages);
     }
 
-    // Delete sliderImages (multiple)
-    if (deletedProfile.sliderImages && deletedProfile.sliderImages.length > 0) {
-      for (const imgUrl of deletedProfile.sliderImages) {
-        const path = getPathFromUrl(imgUrl);
+    await Promise.all(
+      fileUrls.map(async (url) => {
+        const path = getPathFromUrl(url);
         if (path) {
-          await adminStorage
-            .file(path)
-            .delete()
-            .catch((err) => {
-              console.warn("Error deleting slider image:", err.message);
-            });
+          try {
+            await adminStorage.file(path).delete();
+            console.log(`Deleted file from Firebase: ${path}`);
+          } catch (err) {
+            console.error(`Failed to delete file from Firebase: ${path}`, err);
+          }
         }
-      }
-    }
+      })
+    );
+    await CompanyProfile.findByIdAndDelete(id);
 
     return NextResponse.json(
       {
         success: true,
         message: "Profile deleted from DB and Firebase!",
-        profile: deletedProfile,
       },
       { status: 200 }
     );

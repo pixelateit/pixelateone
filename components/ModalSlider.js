@@ -163,17 +163,17 @@ export default function ModalSlider({ isOpen, onClose, card }) {
           <div className="w-full h-full flex flex-col pe-2.5">
             <div className="w-full flex flex-row items-center justify-between">
               <div className="w-fit flex flex-col md:flex-row md:items-center md:gap-1">
-                <span className="font-archivo-narrow font-medium text-sm uppercase text-[#242222]/50">
+                {/* <span className="font-archivo-narrow font-medium text-sm uppercase text-[#242222]/50">
                   Company:
-                </span>
+                </span> */}
                 <span className="w-fit font-oswald font-medium text-sm uppercase text-[#242222] transition-all duration-300">
                   {card.company}
                 </span>
               </div>
               <div className="w-fit flex flex-col md:flex-row md:items-center md:gap-1">
-                <span className="font-archivo-narrow font-medium text-sm uppercase text-[#242222]/50">
+                {/* <span className="font-archivo-narrow font-medium text-sm uppercase text-[#242222]/50">
                   Date:
-                </span>
+                </span> */}
                 <span className="w-fit font-oswald font-medium text-sm uppercase text-[#242222] transition-all duration-300">
                   {formattedDate(card.date)}
                 </span>
