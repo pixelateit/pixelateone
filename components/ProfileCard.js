@@ -23,18 +23,22 @@ export default function ProfileCard({
     <>
       <section className="w-full px-6 pb-20 grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-flow-row gap-1">
         {cardData.map(
-          ({
-            _id,
-            id,
-            company,
-            title,
-            description,
-            software,
-            date,
-            thumbnail,
-            sliderImages,
-          }) => {
-            const isFeatured = (id - 3) % 12 === 0 || (id - 10) % 12 === 0;
+          (
+            {
+              _id,
+              id,
+              company,
+              title,
+              description,
+              software,
+              date,
+              thumbnail,
+              sliderImages,
+            },
+            index
+          ) => {
+            const cycle = index % 12;
+            const isFeatured = cycle === 3 || cycle === 10;
             return (
               <div
                 key={_id}
