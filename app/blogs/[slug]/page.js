@@ -98,7 +98,7 @@ export default function BlogReadPage() {
         const pinTrigger = ScrollTrigger.create({
           trigger: ".stickyx",
           pin: true,
-          start: "top 160px",
+          start: "top 128px",
           end: () => `${container.offsetHeight - 2 * pin.offsetHeight} top`,
         });
 

@@ -156,6 +156,7 @@ export default function ContactMeCard({ contactShow, contactHide }) {
         className="w-full max-w-[420px] h-[560px] absolute top-2 right-2 drop-shadow-2xl "
         style={{
           background: `url(${ContactMeBG.src})`,
+
           backgroundSize: "cover",
           clipPath: "polygon(-20% 0, 100% 0, 100% 0%, -20% 0%)",
           opacity: 0,

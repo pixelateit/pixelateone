@@ -107,18 +107,18 @@ export default function WorkPageScroll() {
           duration: 0.5,
           delay: 1,
           ease: "power3.out",
-        }
+        },
       )
         .fromTo(
           contentBody.current,
           { y: "100vh" },
-          { y: 0, duration: 1, ease: "power3.out" }
+          { y: 0, duration: 1, ease: "power3.out" },
         )
         .fromTo(
           tableOfContent.current,
           { opacity: 0 },
           { opacity: 1, duration: 1, ease: "power3.out" },
-          "-=0.3"
+          "-=0.3",
         );
     }
   }, [loading]);
@@ -147,7 +147,7 @@ export default function WorkPageScroll() {
       <div className="w-full max-w-[1000px] flex-row justify-start lg:flex hidden">
         <div
           ref={tableOfContent}
-          className="w-[160px] flex flex-col gap-2 fixed top-[240px] z-20"
+          className="w-[160px] flex flex-col gap-2 fixed top-[260px] z-20"
         >
           <span className="font-oswald font-medium text-base text-[#242222]/80 uppercase">
             Table of Content
@@ -196,7 +196,7 @@ export default function WorkPageScroll() {
       <div
         ref={contentBody}
         className="w-full mt-[120px] bg-white"
-        style={{ zIndex: 5 }}
+        style={{ zIndex: 5, translateY: "100vh" }}
       >
         <div className="w-full flex flex-col items-center px-5 md:px-0 pb-24 gap-20 relative">
           <div
