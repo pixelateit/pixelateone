@@ -31,7 +31,7 @@ export default function HomeSideMenus() {
             toggleActions: "play none none none",
             markers: false,
           },
-        }
+        },
       ).fromTo(
         sideMenuRef2.current,
         { right: "-100px" },
@@ -46,7 +46,7 @@ export default function HomeSideMenus() {
             markers: false,
           },
         },
-        "<"
+        "<",
       );
 
       ScrollTrigger.refresh();
@@ -120,7 +120,7 @@ export default function HomeSideMenus() {
                 });
                 trackClick("side_menu_hunch");
               }}
-              className="block font-oswald w-full text-xs text-[#cfcfcf] text-center uppercase cursor-pointer hover:text-[#7E1C06]"
+              className="block font-oswald w-full text-xs text-[#c0c0c0] text-center uppercase cursor-pointer hover:text-[#A71F00] text-shadow-sm"
             >
               <TextScramble>My Hunch</TextScramble>
             </button>
@@ -135,7 +135,7 @@ export default function HomeSideMenus() {
                 });
                 trackClick("side_menu_work");
               }}
-              className="block font-oswald w-full text-xs text-[#cfcfcf] text-center uppercase cursor-pointer hover:text-[#7E1C06]"
+              className="block font-oswald w-full text-xs text-[#c0c0c0] text-center uppercase cursor-pointer hover:text-[#A71F00] text-shadow-sm"
             >
               <TextScramble>Work</TextScramble>
             </button>
@@ -151,7 +151,7 @@ export default function HomeSideMenus() {
                 });
                 trackClick("side_menu_posters");
               }}
-              className="block font-oswald w-full text-xs text-[#cfcfcf] text-center uppercase cursor-pointer hover:text-[#7E1C06]"
+              className="block font-oswald w-full text-xs text-[#c0c0c0] text-center uppercase cursor-pointer hover:text-[#A71F00] text-shadow-sm"
             >
               <TextScramble>Posters</TextScramble>
             </button>
@@ -167,7 +167,7 @@ export default function HomeSideMenus() {
                 });
                 trackClick("side_menu_aboutme");
               }}
-              className="block font-oswald w-full text-xs text-[#cfcfcf] text-center uppercase cursor-pointer hover:text-[#7E1C06]"
+              className="block font-oswald w-full text-xs text-[#c0c0c0] text-center uppercase cursor-pointer hover:text-[#A71F00] text-shadow-sm"
             >
               <TextScramble>About Me</TextScramble>
             </button>
@@ -183,9 +183,9 @@ export default function HomeSideMenus() {
                 });
                 trackClick("side_menu_services");
               }}
-              className="block font-oswald w-full text-xs text-[#cfcfcf] text-center uppercase cursor-pointer hover:text-[#7E1C06]"
+              className="block font-oswald w-full text-xs text-[#c0c0c0] text-center uppercase cursor-pointer hover:text-[#A71F00] text-shadow-sm"
             >
-              <TextScramble>Services</TextScramble>
+              <TextScramble>Skills</TextScramble>
             </button>
           </div>
 
@@ -199,7 +199,7 @@ export default function HomeSideMenus() {
                 });
                 trackClick("side_menu_blogs");
               }}
-              className="block font-oswald w-full text-xs text-[#cfcfcf] text-center uppercase cursor-pointer hover:text-[#7E1C06]"
+              className="block font-oswald w-full text-xs text-[#c0c0c0] text-center uppercase cursor-pointer hover:text-[#A71F00] text-shadow-sm"
             >
               <TextScramble>Blogs</TextScramble>
             </button>

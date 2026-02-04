@@ -68,7 +68,7 @@ export default function ContactMeCard({ contactShow, contactHide }) {
           draggable: true,
           theme: "light",
           transition: Bounce,
-        }
+        },
       );
     } catch (err) {
       toast.error("Failed to copy number!");
@@ -107,7 +107,7 @@ export default function ContactMeCard({ contactShow, contactHide }) {
               duration: 0.6,
               ease: "power3.out",
             },
-            "-=0.1"
+            "-=0.1",
           );
       }, 20); // small delay to ensure browser paints hidden state first
 
@@ -155,16 +155,15 @@ export default function ContactMeCard({ contactShow, contactHide }) {
         ref={cardRef}
         className="w-full max-w-[420px] h-[560px] absolute top-2 right-2 drop-shadow-2xl "
         style={{
-          background: `url(${ContactMeBG.src})`,
-
+          // background: `url(${ContactMeBG.src})`,
           backgroundSize: "cover",
-          clipPath: "polygon(-20% 0, 100% 0, 100% 0%, -20% 0%)",
+          // clipPath: "polygon(-20% 0, 100% 0, 100% 0%, -20% 0%)",
           opacity: 0,
           zIndex: 9999,
         }}
         onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
       >
-        <div className="w-full h-14 flex items-center justify-center border-b border-dashed border-[#958E80] relative">
+        <div className="w-full h-14 flex items-center justify-center border-b border-dashed border-[#958E80] relative z-10">
           <div className="w-full max-w-[332px] h-full flex items-center justify-center border-s border-e border-dashed border-[#958E80] relative">
             <h5
               className="w-fit font-archivo-narrow font-semibold text-3xl uppercase text-[#A6A298]"
@@ -200,7 +199,7 @@ export default function ContactMeCard({ contactShow, contactHide }) {
           </button>
         </div>
 
-        <div className="w-full h-[118px] flex items-center justify-center border-b border-dashed border-[#958E80]">
+        <div className="w-full h-[118px] flex items-center justify-center border-b border-dashed border-[#958E80] z-10 relative">
           <div className="w-full max-w-[332px] h-full flex items-center justify-center border-s border-e border-dashed border-[#958E80]">
             <p
               className="w-full max-w-[292px] text-center font-archivo-narrow font-semibold text-lg uppercase text-[#746E62]"
@@ -213,7 +212,7 @@ export default function ContactMeCard({ contactShow, contactHide }) {
           </div>
         </div>
 
-        <div className="w-full h-[146px] flex items-center justify-center border-b border-dashed border-[#958E80]">
+        <div className="w-full h-[146px] flex items-center justify-center border-b border-dashed border-[#958E80] z-10 relative">
           <div className="w-full max-w-[332px] h-full flex items-center justify-center border-s border-e border-dashed border-[#958E80]">
             <div className="w-full max-w-[292px] flex flex-col gap-4">
               <div className="w-full flex flex-col">
@@ -283,7 +282,7 @@ export default function ContactMeCard({ contactShow, contactHide }) {
           </div>
         </div>
 
-        <div className="w-full h-[118px] flex items-center justify-center border-b border-dashed border-[#958E80]">
+        <div className="w-full h-[118px] flex items-center justify-center border-b border-dashed border-[#958E80] z-10 relative">
           <div className="w-full max-w-[332px] h-full flex items-center justify-center border-s border-e border-dashed border-[#958E80]">
             <div className="w-full max-w-[292px] flex flex-col gap-1">
               <Link
@@ -380,7 +379,7 @@ export default function ContactMeCard({ contactShow, contactHide }) {
             </div>
           </div>
         </div>
-        <div className="w-full h-[122px] flex items-center justify-center border-b border-dashed border-[#958E80]">
+        <div className="w-full h-[122px] flex items-center justify-center border-b border-dashed border-[#958E80] z-10 relative">
           <div className="w-full max-w-[310px] h-full flex items-center justify-center ">
             <Image
               src={BarCodePX}
@@ -393,12 +392,20 @@ export default function ContactMeCard({ contactShow, contactHide }) {
         </div>
 
         <div
-          className="w-full h-[50px] absolute bottom-0 left-0"
+          className="w-full h-[50px] absolute bottom-0 left-0 z-10"
           style={{
             backgroundImage: `url(${PageTorn.src})`,
             backgroundRepeat: "repeat-x",
             transform: "translateY(30px)",
           }}
+        />
+        <Image
+          src={ContactMeBG}
+          alt="Contact Me Background"
+          width={420}
+          height={560}
+          priority
+          className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none select-none z-0"
         />
       </div>
     </div>

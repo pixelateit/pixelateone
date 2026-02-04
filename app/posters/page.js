@@ -47,11 +47,11 @@ export default function PostersPage() {
       if (res.ok) {
         setTotalCount(data.totalCount);
         setPosters((prev) =>
-          reset ? data.posters : [...prev, ...data.posters]
+          reset ? data.posters : [...prev, ...data.posters],
         );
         setHasMore(data.posters.length === limit);
         setSkip((prev) =>
-          reset ? data.posters.length : prev + data.posters.length
+          reset ? data.posters.length : prev + data.posters.length,
         );
       }
     } catch (err) {
@@ -81,7 +81,7 @@ export default function PostersPage() {
           "radial-gradient(113.73% 100% at 50% 100%, #FF3F2B 36.04%, #E00E15 67.52%, #750000 100%)",
         duration: 0.4,
         ease: "power4.inOut",
-      }
+      },
     );
   };
 
@@ -210,7 +210,7 @@ export default function PostersPage() {
                   />
 
                   {loading && (
-                    <div className="absolute top-1/2 -translate-y-1/2 w-fit flex flex-row gap-2 items-center">
+                    <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-fit flex flex-row gap-2 items-center">
                       <LoaderCircle className="w-5 h-5 text-[#fff]/40 animate-spin" />{" "}
                       <span className="font-archivo font-semibold text-base text-[#fff]/60">
                         Loading...
@@ -248,7 +248,7 @@ export default function PostersPage() {
             card={selectedCard}
             onClose={() => setIsModalOpen(false)}
           />,
-          document.body
+          document.body,
         )}
 
       {hasMore && !firstLoad && (

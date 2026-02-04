@@ -5,10 +5,11 @@ import PageTorn from "@/public/home/pageTorn2.webp";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import ImageSlider from "@/components/ImageSlider";
-import { gsap } from "@/lib/gsapConfig";
+import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import HoverButton from "@/components/HoverButton";
 import PageLink from "@/components/PageLink";
+import { useGSAPAnimations } from "@/hooks/useGSAPAnimations";
 
 export default function WorkPageScroll() {
   const { id: workId } = useParams();
@@ -96,32 +97,59 @@ export default function WorkPageScroll() {
   useEffect(() => {
     if (!loading) {
       const tl = gsap.timeline();
-      tl.fromTo(
+      tl.to(
         contentBody.current,
-        {
-          y: "100vh",
-          opacity: 0,
-        },
+        // {
+        //   translateY: "100vh",
+        //   opacity: 0,
+        // },
         {
           opacity: 1,
           duration: 0.5,
-          delay: 1,
+          delay: 0.5,
           ease: "power3.out",
         },
       )
         .fromTo(
           contentBody.current,
-          { y: "100vh" },
-          { y: 0, duration: 1, ease: "power3.out" },
+          { translateY: "100vh" },
+          { translateY: 0, duration: 1, ease: "power3.out" },
         )
-        .fromTo(
+        .to(
           tableOfContent.current,
-          { opacity: 0 },
+          // { opacity: 0 },
           { opacity: 1, duration: 1, ease: "power3.out" },
           "-=0.3",
         );
     }
   }, [loading]);
+
+  useGSAPAnimations({
+    animations: [
+      () => {
+        if (loading) return;
+
+        const container = contentBody.current;
+        const pin = tableOfContent.current;
+
+        if (!pin || !container) return;
+
+        const pinTrigger = ScrollTrigger.create({
+          trigger: ".stickyx",
+          pin: true,
+          start: "top 260px",
+          end: () => `${container.offsetHeight - 2 * pin.offsetHeight} top`,
+        });
+
+        ScrollTrigger.refresh();
+
+        return () => {
+          pinTrigger.kill();
+        };
+      },
+    ],
+    dependencies: [loading],
+  });
 
   const getImageUrl = (imageObject) => imageObject?.preview || "";
 
@@ -144,10 +172,10 @@ export default function WorkPageScroll() {
 
   return (
     <div className="w-full flex flex-col items-center relative bg-black">
-      <div className="w-full max-w-[1000px] flex-row justify-start lg:flex hidden">
+      <div className="w-full max-w-[1000px] h-0.5 flex-row justify-start lg:flex hidden">
         <div
           ref={tableOfContent}
-          className="w-[160px] flex flex-col gap-2 fixed top-[260px] z-20"
+          className="w-[160px] flex flex-col gap-2  z-20 stickyx opacity-0"
         >
           <span className="font-oswald font-medium text-base text-[#242222]/80 uppercase">
             Table of Content
@@ -196,7 +224,7 @@ export default function WorkPageScroll() {
       <div
         ref={contentBody}
         className="w-full mt-[120px] bg-white"
-        style={{ zIndex: 5, translateY: "100vh" }}
+        style={{ zIndex: 5, translateY: "100vh", opacity: 0 }}
       >
         <div className="w-full flex flex-col items-center px-5 md:px-0 pb-24 gap-20 relative">
           <div
@@ -298,14 +326,16 @@ export default function WorkPageScroll() {
 
           {/*Banner*/}
           {formData.banner?.preview && (
-            <Image
-              src={formData.banner?.preview}
-              alt="Banner Image"
-              loading="lazy"
-              width={1900}
-              height={540}
-              className="w-full object-cover aspect-auto min-h-[400px] rounded-[10px]"
-            />
+            <div className="w-full px-2 pointer-events-auto">
+              <Image
+                src={formData.banner?.preview}
+                alt="Banner Image"
+                loading="lazy"
+                width={1900}
+                height={540}
+                className="w-full object-cover aspect-auto min-h-[400px] rounded-[10px]"
+              />
+            </div>
           )}
 
           <div className="w-full max-w-[1000px] flex flex-row justify-end">

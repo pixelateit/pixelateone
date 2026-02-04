@@ -61,7 +61,7 @@ export default function AboutSection() {
               className="font-oswald font-medium uppercase text-[#ffffff]"
               style={{ fontSize: "clamp(10px, 0.83vw, 16px)" }}
             >
-              (Mix)
+              (one)
             </span>
           </div>
         </div>
@@ -238,9 +238,9 @@ export default function AboutSection() {
                         letterSpacing: "0.04em",
                       }}
                     >
-                      B
+                      M
                     </span>
-                    ackground
+                    indset
                   </div>
                 </div>
               </h3>
@@ -254,7 +254,7 @@ export default function AboutSection() {
                   }`}
                   style={{ letterSpacing: "-0.02em" }}
                 >
-                  I’m a product designer with{" "}
+                  My journey into design began with curiosity.{" "}
                   <span
                     className={
                       isOn ? " text-white font-archivo-narrow" : "text-base"
@@ -269,11 +269,11 @@ export default function AboutSection() {
                     >
                       (1)
                     </span>
-                    5 years of industry experience
+                    I’ve always been drawn to building — understanding how
+                    things work and how they can work better.{" "}
                   </span>
-                  , but my design journey began much earlier. As a child, I
-                  built imaginative creations with Legos, sparking my lifelong
-                  curiosity for design and problem-solving.{" "}
+                  That curiosity led me to code early, experiment with
+                  interfaces, and eventually step into product design.{" "}
                   <span
                     className={
                       isOn ? " text-white font-archivo-narrow" : "text-base"
@@ -288,10 +288,12 @@ export default function AboutSection() {
                     >
                       (2)
                     </span>
-                    At 13, I wrote my first line of code
+                    With 3.5+ years of hands-on experience, I work at the
+                    intersection of design and engineering.{" "}
                   </span>
-                  , a milestone that paved the way for a foundation in frontend
-                  development.
+                  My frontend background allows me to think in systems — not
+                  just screens. I design with structure, scalability, and
+                  implementation in mind.
                 </p>
               </div>
 
@@ -302,7 +304,9 @@ export default function AboutSection() {
                   }`}
                   style={{ letterSpacing: "-0.02em" }}
                 >
-                  This coding background not only{" "}
+                  I started by designing interfaces and coding them myself. That
+                  process shaped how I approach UX today — grounded in logic,
+                  performance, and usability.{" "}
                   <span
                     className={
                       isOn ? " text-white font-archivo-narrow" : "text-base"
@@ -317,9 +321,9 @@ export default function AboutSection() {
                     >
                       (3)
                     </span>
-                    shaped my transition into design
-                  </span>{" "}
-                  but also ensures seamless handoffs with developers and{" "}
+                    Over time, I moved into a design-first approach, focusing on
+                    clarity, visual hierarchy, and product strategy.{" "}
+                  </span>
                   <span
                     className={
                       isOn ? " text-white font-archivo-narrow" : "text-base"
@@ -334,8 +338,12 @@ export default function AboutSection() {
                     >
                       (4)
                     </span>
-                    mastery of no-code tools like Webflow.
+                    My work spans UI/UX, branding, web experiences, and 3D
+                    visuals.{" "}
                   </span>
+                  I enjoy bridging creativity with technical precision —
+                  crafting digital products that are both expressive and
+                  functional.
                 </p>
               </div>
 
@@ -346,6 +354,8 @@ export default function AboutSection() {
                   }`}
                   style={{ letterSpacing: "-0.02em" }}
                 >
+                  Beyond product design, I’ve worked on branding initiatives,
+                  marketing campaigns, and visual systems.{" "}
                   <span
                     className={
                       isOn ? " text-white font-archivo-narrow" : "text-base"
@@ -360,15 +370,10 @@ export default function AboutSection() {
                     >
                       (5)
                     </span>
-                    My love for interactive websites and motion design
-                    eventually led me into UI/UX design.
-                  </span>{" "}
-                  I started out designing interfaces and coding them before
-                  fully embracing a design-first approach. Over the years, I’ve
-                  explored various design disciplines, starting with logo
-                  creation and branding projects to creating marketing
-                  collaterals while volunteering in student organizations like
-                  AIESEC, where I grew to lead marketing teams.
+                    I’ve led projects end-to-end — from concept and design to
+                    implementation — collaborating closely with developers and
+                    stakeholders.
+                  </span>
                 </p>
               </div>
 
@@ -379,7 +384,7 @@ export default function AboutSection() {
                   }`}
                   style={{ letterSpacing: "-0.02em" }}
                 >
-                  A standout moment was{" "}
+                  Today,{" "}
                   <span
                     className={
                       isOn ? " text-white font-archivo-narrow" : "text-base"
@@ -394,10 +399,9 @@ export default function AboutSection() {
                     >
                       (6)
                     </span>
-                    running a campaign that converted 65% of registered
-                    delegates into paid attendees in less than a month
+                    I focus on building purposeful digital experiences — clean,
+                    scalable, and built for impact.
                   </span>
-                  —a testament to teamwork, strategy, and creative execution.
                 </p>
               </div>
             </div>

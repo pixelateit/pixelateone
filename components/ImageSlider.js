@@ -25,14 +25,16 @@ export default function ImageSlider({ images }) {
   // Move slides
   const sliderLeft = () => {
     setCurrentIndex((prev) =>
-      prev - slidesToShow < 0 ? totalSlides - slidesToShow : prev - slidesToShow
+      prev - slidesToShow < 0
+        ? totalSlides - slidesToShow
+        : prev - slidesToShow,
     );
     restartProgress();
   };
 
   const sliderRight = () => {
     setCurrentIndex((prev) =>
-      prev + slidesToShow >= totalSlides ? 0 : prev + slidesToShow
+      prev + slidesToShow >= totalSlides ? 0 : prev + slidesToShow,
     );
     restartProgress();
   };
@@ -126,7 +128,7 @@ export default function ImageSlider({ images }) {
       </div>
 
       {/* Slider Images */}
-      <div className="w-full flex flex-row gap-2.5 transition-all duration-300 ease-in-out px-[5px] items-center justify-center">
+      <div className="w-full flex flex-row gap-2.5 transition-all duration-300 ease-in-out md:px-[13px] items-center justify-center">
         {visibleImages.map((imageSrc, index) => (
           <Image
             key={index}

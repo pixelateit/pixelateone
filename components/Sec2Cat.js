@@ -36,7 +36,7 @@ export default function Sec2Cat() {
             start: "top 80%",
             markers: false,
           },
-        }
+        },
       );
 
       cats.forEach((cat) => {
@@ -67,6 +67,7 @@ export default function Sec2Cat() {
       <Image
         src={Categories[0]}
         alt="Social Media"
+        width={248}
         height={52}
         unoptimized
         className="absolute aspect-auto top-[64px] left-[24px] rotate-[3.74deg]"
@@ -74,6 +75,7 @@ export default function Sec2Cat() {
       <Image
         src={Categories[1]}
         alt="Marketing"
+        width={204}
         height={52}
         unoptimized
         className="absolute aspect-auto top-[20px] left-[42.6px] rotate-[-10.79deg]"
@@ -81,6 +83,7 @@ export default function Sec2Cat() {
       <Image
         src={Categories[4]}
         alt="Animation"
+        width={204}
         height={52}
         unoptimized
         className="absolute aspect-auto top-[164px] left-[60px] rotate-[-10.72deg]"
@@ -88,6 +91,7 @@ export default function Sec2Cat() {
       <Image
         src={Categories[2]}
         alt="Product Design"
+        width={293}
         height={52}
         unoptimized
         className="absolute aspect-auto top-[138px] left-[20px] rotate-[3deg]"
@@ -95,6 +99,7 @@ export default function Sec2Cat() {
       <Image
         src={Categories[3]}
         alt="UI/UX"
+        width={120}
         height={50}
         unoptimized
         className="absolute aspect-auto top-[48px] left-[150px] rotate-[21.27deg]"
@@ -103,6 +108,7 @@ export default function Sec2Cat() {
       <Image
         src={Categories[5]}
         alt="Graphic Design"
+        width={289}
         height={52}
         unoptimized
         className="absolute aspect-auto top-[98.46px] left-[7px] rotate-[-5.39deg]"

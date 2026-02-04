@@ -40,7 +40,7 @@ export default function QuoteSlider() {
       try {
         setLoading(true);
         const res = await fetch(
-          "/api/quotes?fields=quote,quotee,image&active=true"
+          "/api/quotes?fields=quote,quotee,image&active=true",
         );
         const data = await res.json();
         setQuotes(data.quotes);
@@ -66,14 +66,14 @@ export default function QuoteSlider() {
     gsap.fromTo(
       progressRef.current,
       { width: 0 },
-      { width: "100%", duration: 5, ease: "linear" }
+      { width: "100%", duration: 5, ease: "linear" },
     );
 
     // Fade-in
     gsap.fromTo(
       [textRef.current, imageRef.current],
       { opacity: 0 },
-      { opacity: 1, duration: 1 }
+      { opacity: 1, duration: 1 },
     );
 
     // Auto-slide

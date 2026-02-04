@@ -71,7 +71,7 @@ export default function BlogSection() {
               scrub: true,
               // markers: true,
             },
-          }
+          },
         );
 
         return () => tween.kill();
@@ -102,7 +102,7 @@ export default function BlogSection() {
               scrub: true,
               markers: false,
             },
-          }
+          },
         );
 
         return () => tween.kill();
@@ -158,7 +158,10 @@ export default function BlogSection() {
               </span>
               <span
                 className="text-white font-kings"
-                style={{ lineHeight: "clamp(24px, 1.875vw, 36px)" }}
+                style={{
+                  fontSize: "clamp(24px, 2.5vw, 54px)",
+                  lineHeight: "clamp(24px, 1.875vw, 36px)",
+                }}
               >
                 Thoughts
               </span>

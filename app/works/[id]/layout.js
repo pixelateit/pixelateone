@@ -6,7 +6,9 @@ export default function WorkPageLayout({ children }) {
     <>
       <BlurWindow />
       <Header theme="wob" />
-      {children}
+      <div id="smooth-wrapper">
+        <div id="smooth-content">{children}</div>
+      </div>
     </>
   );
 }

@@ -35,7 +35,10 @@ export default function Section4() {
               </span>
               <span
                 className="text-[#2D0F09] font-kings"
-                style={{ lineHeight: "clamp(24px, 1.875vw, 36px)" }}
+                style={{
+                  fontSize: "clamp(24px, 2.5vw, 54px)",
+                  lineHeight: "clamp(24px, 1.875vw, 36px)",
+                }}
               >
                 Me
               </span>
@@ -115,7 +118,7 @@ export default function Section4() {
                 <div className="flex w-full flex-col gap-4">
                   <div className="flex flex-row gap-1 items-center">
                     <span className="font-archivo-narrow font-bold uppercase text-[#2D0F09] text-xs">
-                      Approach
+                      Philosophy
                     </span>
                     <div className="w-8 h-[1px] bg-[#2D0F09]"></div>
                   </div>
@@ -128,9 +131,9 @@ export default function Section4() {
                         letterSpacing: "-0.04em",
                       }}
                     >
-                      Designing with
+                      I Design with
                       <br />
-                      Purpose &<br />
+                      Intention &<br />
                       <span
                         className="font-kings font-normal"
                         style={{ letterSpacing: 0 }}
@@ -144,9 +147,10 @@ export default function Section4() {
                       className="font-archivo font-medium text-[#6F6867] text-base"
                       style={{ letterSpacing: "-0.03em" }}
                     >
-                      Design isn’t just how it looks—it’s how it works. My
-                      approach blends clarity with creativity to solve real
-                      problems, spark engagement, and drive results.
+                      For me, design is not decoration — it is structure,
+                      clarity, and function. Every interface, brand, or system I
+                      build begins with understanding the problem deeply before
+                      shaping the solution visually.
                     </p>
                   </TextAppear>
                   <TextAppear start="top 60%" end="top 30%">
@@ -154,10 +158,9 @@ export default function Section4() {
                       className="font-archivo font-medium text-[#6F6867] text-base"
                       style={{ letterSpacing: "-0.03em" }}
                     >
-                      Every project starts with a deep dive into your brand,
-                      audience, and goals—so the final design isn’t just
-                      visually sharp, but purposeful, strategic, and built for
-                      impact.
+                      I focus on reducing noise, simplifying complexity, and
+                      creating experiences that feel effortless. The goal is
+                      always the same: purposeful design that performs.
                     </p>
                   </TextAppear>
                 </div>
@@ -211,9 +214,8 @@ export default function Section4() {
                       className="font-archivo font-medium text-[#6F6867] text-base"
                       style={{ letterSpacing: "-0.03em" }}
                     >
-                      With 3.5 years of hands-on experience, I’ve grown from a
-                      curious visual thinker into a strategic designer—shaping
-                      brands, products, and digital experiences that perform.
+                      My journey began with visual curiosity and evolved into
+                      strategic thinking.
                     </p>
                   </TextAppear>
                   <TextAppear start="top 60%" end="top 30%">
@@ -221,9 +223,10 @@ export default function Section4() {
                       className="font-archivo font-medium text-[#6F6867] text-base"
                       style={{ letterSpacing: "-0.03em" }}
                     >
-                      Blending form, function, and storytelling, I’ve built a
-                      practice rooted in clarity, craft, and impact—across
-                      UI/UX, branding, web, and content design.
+                      Over the past 3.5+ years, I’ve grown into a
+                      multidisciplinary designer working across UI/UX, branding,
+                      web, and 3D. I bridge aesthetics with systems — balancing
+                      creative expression with functional logic.
                     </p>
                   </TextAppear>
                   <TextAppear start="top 60%" end="top 30%">
@@ -231,9 +234,9 @@ export default function Section4() {
                       className="font-archivo font-medium text-[#6F6867] text-base"
                       style={{ letterSpacing: "-0.03em" }}
                     >
-                      Now, I help brands, startups, and creators craft
-                      meaningful, scalable design solutions—from interfaces and
-                      identities to impactful content and visual systems.
+                      Today, I work with startups and growing brands to craft
+                      scalable digital experiences that are clear, refined, and
+                      built for impact.
                     </p>
                   </TextAppear>
                 </div>

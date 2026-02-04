@@ -42,19 +42,19 @@ export default function RamsQuote() {
             tl.fromTo(
               quoteDiv.current,
               { width: "80px" },
-              { width: "340px", duration: 1, ease: "power3.out" }
+              { width: "340px", duration: 1, ease: "power3.out" },
             )
               .fromTo(
                 [img1.current, img2.current],
                 { maxWidth: "140px" },
                 { maxWidth: "212px", duration: 1, ease: "power3.out" },
-                "-=0.9"
+                "-=0.9",
               )
               .fromTo(
                 quote.current,
                 { opacity: 0 },
                 { opacity: 1, duration: 1, ease: "power3.out" },
-                "-=0.4"
+                "-=0.4",
               );
           });
 
@@ -72,19 +72,19 @@ export default function RamsQuote() {
             tl.fromTo(
               quoteDiv.current,
               { width: "100px" },
-              { width: "480px", duration: 1, ease: "power3.out" }
+              { width: "480px", duration: 1, ease: "power3.out" },
             )
               .fromTo(
                 [img1.current, img2.current],
                 { maxWidth: "140px" },
                 { maxWidth: "212px", duration: 1, ease: "power3.out" },
-                "-=0.9"
+                "-=0.9",
               )
               .fromTo(
                 quote.current,
                 { opacity: 0 },
                 { opacity: 1, duration: 1, ease: "power3.out" },
-                "-=0.4"
+                "-=0.4",
               );
           });
         }, quoteDiv);
@@ -104,7 +104,7 @@ export default function RamsQuote() {
           width={424}
           height={240}
           alt="Beautiful Design"
-          className="hidden lg:block w-full h-auto aspect-video"
+          className="hidden lg:block w-full h-auto aspect-video border-[1px] rounded-xl border-[#d0d0d0]"
         />
         <div className="hidden lg:flex flex-row items-center w-full">
           <div className="bg-[#cccccc] h-[1px] w-full"></div>
@@ -145,7 +145,7 @@ export default function RamsQuote() {
           src={FunctionalS}
           ref={img2}
           alt="Functional Design"
-          className="hidden lg:block max-w-[212px] w-full aspect-video"
+          className="hidden lg:block max-w-[212px] w-full aspect-video border-[1px] rounded-xl border-[#d0d0d0]"
         />
       </div>
 

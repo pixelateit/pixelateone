@@ -1,3 +1,4 @@
+// components/ProductShow.js
 "use client";
 
 import { useRef } from "react";
@@ -8,15 +9,25 @@ import { gsap } from "@/lib/gsapConfig";
 import Image1 from "@/public/home/image.webp";
 import Image2 from "@/public/home/image-1.webp";
 import Image3 from "@/public/home/image-2.webp";
-import Image4 from "@/public/home/image-3.webp";
-import Image5 from "@/public/home/image-4.webp";
+import postCab from "@/public/home/cabPoster.webp";
+import speakerImg from "@/public/home/SpeakerImage.webp";
 
 const imageData = [
-  { src: Image1, tags: ["Logo Design", "Branding"] },
-  { src: Image2, tags: ["App Design", "UI/UX"] },
-  { src: Image3, tags: ["Web Design", "Web APP", "UI/UX"] },
-  { src: Image4, tags: ["Ads", "Animation"] },
-  { src: Image5, tags: ["Product Design", "3d"] },
+  { type: "image", src: Image1, tags: ["Logo Design", "Branding"] },
+  { type: "image", src: Image2, tags: ["App Design", "UI/UX"] },
+  {
+    type: "video",
+    src: "/home/cabsule.mp4",
+    tags: ["Ads", "Animation", "3d"],
+    poster: postCab,
+  },
+  { type: "image", src: Image3, tags: ["Web Design", "Web APP", "UI/UX"] },
+  {
+    type: "video",
+    src: "/home/SpeakerVideo.mp4",
+    tags: ["Product Design", "3d"],
+    poster: speakerImg,
+  },
 ];
 
 export default function ProductShow() {
@@ -70,14 +81,31 @@ export default function ProductShow() {
             ref={(el) => (imageRefs.current[index] = el)}
             className="rounded-xl overflow-hidden flex-grow max-w-1/5 relative group"
           >
-            <Image
-              src={item.src}
-              alt={`Image ${index + 1}`}
-              priority
-              height={520}
-              width={9999}
-              className="w-full h-full duration-300 transform scale-100 aspect-auto group-hover:scale-110"
-            />
+            {item.type === "image" ? (
+              <Image
+                src={item.src}
+                alt={`Image ${index + 1}`}
+                priority
+                height={520}
+                width={9999}
+                className="w-full h-full duration-300 transform scale-100 aspect-auto group-hover:scale-120"
+              />
+            ) : (
+              <video
+                autoPlay
+                poster={item.poster.src}
+                loop
+                muted
+                playsInline
+                className="w-full h-full aspect-auto object-cover pointer-events-none"
+              >
+                <source
+                  src={typeof item.src === "string" ? item.src : item.src?.src}
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            )}
             <div className="absolute top-0 w-full flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity p-2.5 flex-wrap items-center">
               {item.tags.map((tag, i) => (
                 <span

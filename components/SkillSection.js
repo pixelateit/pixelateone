@@ -6,9 +6,21 @@ import TextHighlight from "./TextHighlight";
 import { gsap, ScrollTrigger } from "@/lib/gsapConfig";
 import Image from "next/image";
 
-import Image1 from "@/public/home/image.webp";
-import Image2 from "@/public/home/image-1.webp";
-import Image3 from "@/public/home/image-2.webp";
+import uiux1 from "@/public/home/skills/uiux/UIUX-01.png";
+import uiux2 from "@/public/home/skills/uiux/UIUX-02.png";
+import uiux3 from "@/public/home/skills/uiux/UIUX-03.png";
+import anim1 from "@/public/home/skills/anim/Anim-01.png";
+import anim2 from "@/public/home/skills/anim/Anim-02.png";
+import anim3 from "@/public/home/skills/anim/Anim-03.png";
+import comProf1 from "@/public/home/skills/comProf/ComProf-01.png";
+import comProf2 from "@/public/home/skills/comProf/ComProf-02.png";
+import comProf3 from "@/public/home/skills/comProf/ComProf-03.png";
+import graph1 from "@/public/home/skills/graph/Graph-01.png";
+import graph2 from "@/public/home/skills/graph/Graph-02.png";
+import graph3 from "@/public/home/skills/graph/Graph-03.png";
+import webDev1 from "@/public/home/skills/webDev/WebDev-01.png";
+import webDev2 from "@/public/home/skills/webDev/WebDev-02.png";
+import webDev3 from "@/public/home/skills/webDev/WebDev-03.png";
 
 export default function SkillSection() {
   const devMd = useRef(null);
@@ -43,7 +55,7 @@ export default function SkillSection() {
             // scrub: true,
             markers: false,
           },
-        }
+        },
       );
 
       ScrollTrigger.refresh();
@@ -80,7 +92,10 @@ export default function SkillSection() {
               </span>
               <span
                 className="text-[#2D0F09] font-kings"
-                style={{ lineHeight: "clamp(24px, 1.875vw, 36px)" }}
+                style={{
+                  fontSize: "clamp(24px, 2.5vw, 54px)",
+                  lineHeight: "clamp(24px, 1.875vw, 36px)",
+                }}
               >
                 Skills
               </span>
@@ -120,34 +135,36 @@ export default function SkillSection() {
                     </span>
                     UX/UI Design
                   </h5>
-                  <p className="w-full font-archivo font-normal text-[#6F6867] text-lg">
-                    Intuitive interfaces crafted with precision—balancing
-                    usability, accessibility, and aesthetic harmony.
+                  <p className="w-full font-archivo font-normal text-[#6F6867] text-base">
+                    Intuitive, user-centered interfaces crafted with
+                    precision—balancing usability, accessibility, and visual
+                    clarity. Designed for SaaS platforms, dashboards, and
+                    digital products.
                   </p>
                   <div className="w-full hidden lg:block max-w-[300px] h-full relative z-10">
                     <div className="w-full max-w-[300px] h-full relative translate-x-20">
                       <Image
-                        src={Image2}
+                        src={uiux2}
                         alt="Image2"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[52%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[45%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image3}
+                        src={uiux3}
                         alt="Image3"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[48%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[55%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image1}
+                        src={uiux1}
                         alt="Image1"
                         width={212}
                         height={248}
-                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-xl aspect-auto border border-black/5"
                       />
                     </div>
                   </div>
@@ -161,36 +178,37 @@ export default function SkillSection() {
                     <span className="font-kings text-sm text-[#2D0F09]">
                       (02)
                     </span>
-                    Website Design
+                    Web Development
                   </h5>
-                  <p className="w-full font-archivo font-normal text-[#6F6867] text-lg">
-                    Visually cohesive web layouts that reflect your brand and
-                    guide users through meaningful experiences.
+                  <p className="w-full font-archivo font-normal text-[#6F6867] text-base">
+                    Responsive, high-performance websites built with modern
+                    technologies. Optimized for speed, scalability, and seamless
+                    user interaction across devices.
                   </p>
                   <div className="w-full hidden lg:block max-w-[300px] h-full relative z-10">
                     <div className="w-full max-w-[300px] h-full relative translate-x-20">
                       <Image
-                        src={Image2}
-                        alt="Image2"
+                        src={webDev2}
+                        alt="WebDev1"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[52%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[45%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image3}
-                        alt="Image3"
+                        src={webDev3}
+                        alt="WebDev2"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[48%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[55%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image1}
-                        alt="Image1"
+                        src={webDev1}
+                        alt="WebDev3"
                         width={212}
                         height={248}
-                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-xl aspect-auto border border-black/5"
                       />
                     </div>
                   </div>
@@ -204,36 +222,37 @@ export default function SkillSection() {
                     <span className="font-kings text-sm text-[#2D0F09]">
                       (03)
                     </span>
-                    Web Development
+                    Graphic Design
                   </h5>
-                  <p className="w-full font-archivo font-normal text-[#6F6867] text-lg">
-                    Responsive, fast, and scalable websites—built with modern
-                    tools to support seamless interaction.
+                  <p className="w-full font-archivo font-normal text-[#6F6867] text-base">
+                    Strategic visual communication—from brand identities to
+                    marketing creatives. Clean, impactful designs that
+                    strengthen brand presence and storytelling.
                   </p>
                   <div className="w-full hidden lg:block max-w-[300px] h-full relative z-10">
                     <div className="w-full max-w-[300px] h-full relative translate-x-20">
                       <Image
-                        src={Image2}
-                        alt="Image2"
+                        src={graph3}
+                        alt="Graph1"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[52%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[45%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image3}
-                        alt="Image3"
+                        src={graph2}
+                        alt="Graph2"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[48%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[55%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image1}
-                        alt="Image1"
+                        src={graph1}
+                        alt="Graph3"
                         width={212}
                         height={248}
-                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-xl aspect-auto border border-black/5"
                       />
                     </div>
                   </div>
@@ -247,36 +266,37 @@ export default function SkillSection() {
                     <span className="font-kings text-sm text-[#2D0F09]">
                       (04)
                     </span>
-                    Web App Design
+                    Pitch Decks
                   </h5>
-                  <p className="w-full font-archivo font-normal text-[#6F6867] text-lg">
-                    Functional, user-centered design systems for modern SaaS
-                    platforms, dashboards, and digital tools.
+                  <p className="w-full font-archivo font-normal text-[#6F6867] text-base">
+                    Compelling presentation designs that communicate vision with
+                    clarity. Structured for storytelling, investor confidence,
+                    and persuasive impact.
                   </p>
                   <div className="w-full hidden lg:block max-w-[300px] h-full relative z-10">
                     <div className="w-full max-w-[300px] h-full relative translate-x-20">
                       <Image
-                        src={Image2}
-                        alt="Image2"
+                        src={comProf1}
+                        alt="ComProf1"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[52%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[45%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image3}
-                        alt="Image3"
+                        src={comProf2}
+                        alt="ComProf2"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[48%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[55%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image1}
-                        alt="Image1"
+                        src={comProf3}
+                        alt="ComProf3"
                         width={212}
                         height={248}
-                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-xl aspect-auto border border-black/5"
                       />
                     </div>
                   </div>
@@ -290,36 +310,37 @@ export default function SkillSection() {
                     <span className="font-kings text-sm text-[#2D0F09]">
                       (05)
                     </span>
-                    Pitch Decks
+                    3D Animation
                   </h5>
-                  <p className="w-full font-archivo font-normal text-[#6F6867] text-lg">
-                    Presentation designs that communicate vision with
-                    clarity—built for storytelling, investors, and scale.
+                  <p className="w-full font-archivo font-normal text-[#6F6867] text-base">
+                    Dynamic 3D visuals and motion experiences that elevate
+                    digital storytelling—ideal for product showcases, web
+                    interactions, and branded content.
                   </p>
                   <div className="w-full hidden lg:block max-w-[300px] h-full relative z-10">
                     <div className="w-full max-w-[300px] h-full relative translate-x-20">
                       <Image
-                        src={Image2}
-                        alt="Image2"
+                        src={anim1}
+                        alt="Anim1"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[52%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[45%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-300 rotate-z-0 group-hover:rotate-z-[-24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image3}
-                        alt="Image3"
+                        src={anim2}
+                        alt="Anim2"
                         width={212}
                         height={248}
-                        className="absolute top-[-30px] left-[48%] -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[16deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-[-50px] left-[55%] -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-[200ms] rotate-z-0 group-hover:rotate-z-[24deg] origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-sm aspect-auto border border-black/5"
                       />
 
                       <Image
-                        src={Image1}
-                        alt="Image1"
+                        src={anim3}
+                        alt="Anim3"
                         width={212}
                         height={248}
-                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-lg max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none"
+                        className="absolute top-0 left-1/2 -translate-1/2 scale-0 rounded-xl max-w-[212px] max-h-[248px] object-cover group-hover:scale-100 duration-200 origin-bottom opacity-0 group-hover:opacity-100 blur-2xl group-hover:blur-none group-hover:shadow-xl aspect-auto border border-black/5"
                       />
                     </div>
                   </div>

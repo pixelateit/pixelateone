@@ -36,7 +36,10 @@ export default function Section3() {
                 </span>
                 <span
                   className="text-white font-kings"
-                  style={{ lineHeight: "clamp(24px, 1.875vw, 36px)" }}
+                  style={{
+                    fontSize: "clamp(24px, 2.5vw, 54px)",
+                    lineHeight: "clamp(24px, 1.875vw, 36px)",
+                  }}
                 >
                   Works
                 </span>
@@ -76,7 +79,7 @@ export default function Section3() {
           }}
           id="dragZone"
         >
-          <div className="w-full flex flex-col items-center max-w-7xl">
+          <div className="w-full flex flex-col items-center max-w-7xl mt-6">
             <div className="flex flex-col items-center gap-3 lg:gap-6">
               <TextHighlight opacity={0}>
                 <h3
@@ -95,7 +98,10 @@ export default function Section3() {
                   </span>
                   <span
                     className="text-white font-kings"
-                    style={{ lineHeight: "clamp(24px, 1.875vw, 36px)" }}
+                    style={{
+                      fontSize: "clamp(24px, 2.5vw, 54px)",
+                      lineHeight: "clamp(24px, 1.875vw, 36px)",
+                    }}
                   >
                     Posters
                   </span>

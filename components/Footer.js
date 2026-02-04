@@ -80,31 +80,31 @@ export default function Footer() {
               </h5>
               <div className="w-full flex flex-col gap-2 items-center">
                 <Link
-                  href="#"
+                  href="/"
                   className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center"
                 >
                   Home
                 </Link>
                 <Link
-                  href="#"
+                  href="/about"
                   className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center"
                 >
                   About
                 </Link>
                 <Link
-                  href="#"
+                  href="/works"
                   className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center"
                 >
                   Work
                 </Link>
                 <Link
-                  href="#"
+                  href="/posters"
                   className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center"
                 >
                   Posters
                 </Link>
                 <Link
-                  href="#"
+                  href="/profiles"
                   className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center"
                 >
                   Pitch Deck
@@ -132,22 +132,36 @@ export default function Footer() {
               </h5>
               <div className="w-full flex flex-col gap-2 items-center">
                 <Link
-                  href="#"
+                  href="https://www.instagram.com/thepixelateit/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center"
                 >
                   Instagram
                 </Link>
                 <Link
-                  href="#"
+                  href="https://www.behance.net/thepixelate/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center"
                 >
                   Behance
                 </Link>
                 <Link
-                  href="#"
+                  href="https://www.linkedin.com/in/pixelateit/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center"
                 >
                   LinkedIn
+                </Link>
+                <Link
+                  href="https://www.x.com/pixelateit/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center"
+                >
+                  X / Twitter
                 </Link>
               </div>
             </div>
@@ -206,10 +220,17 @@ export default function Footer() {
               </h5>
               <div className="w-full flex flex-col gap-2 items-center">
                 <Link
-                  href="#"
+                  href="/miscs"
                   className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center truncate flex"
                 >
                   Miscellaneous
+                </Link>
+
+                <Link
+                  href="/blogs"
+                  className="text-[#6F6867] font-archivo-narrow text-base font-medium cursor-pointer hover:text-[#6f6867]/50 transition-all duration-300 w-fit uppercase hover:underline text-center truncate flex"
+                >
+                  Blogs
                 </Link>
               </div>
             </div>
