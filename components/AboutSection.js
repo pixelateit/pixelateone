@@ -58,10 +58,10 @@ export default function AboutSection() {
           </h1>
           <div style={{ marginTop: "clamp(0px, 0.2vw, 10px)" }}>
             <span
-              className="font-oswald font-medium uppercase text-[#ffffff]"
+              className="font-oswald font-medium uppercase text-[#FF3F2B]"
               style={{ fontSize: "clamp(10px, 0.83vw, 16px)" }}
             >
-              (one)
+              (the1)
             </span>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function AboutSection() {
               <Image
                 src={MyPhoto}
                 alt="my photo"
-                width={500}
+                width={525}
                 height={625}
                 draggable={false}
                 className="w-full aspect-auto"
@@ -454,11 +454,11 @@ export default function AboutSection() {
 
           <div
             className={
-              "w-full bg-white flex-col lg:flex-row items-center min-h-[480px] " +
+              "w-full bg-white flex-col lg:flex-row items-center min-h-[520px] " +
               (toggleOn === 0 ? "flex" : "hidden")
             }
           >
-            <div className="w-full p-6 lg:px-[60px] flex items-center h-full lg:py-10">
+            <div className="w-full p-6 lg:px-[80px] flex items-center h-full lg:py-10">
               <div className="w-full flex flex-col gap-3">
                 <span
                   className="w-full font-archivo-narrow font-medium text-base text-[#242222] uppercase"
@@ -490,7 +490,7 @@ export default function AboutSection() {
 
           <div
             className={
-              "w-full bg-white flex-col lg:flex-row items-center min-h-[480px] " +
+              "w-full bg-white flex-col lg:flex-row items-center min-h-[520px] " +
               (toggleOn === 1 ? "flex" : "hidden")
             }
           >

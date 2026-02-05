@@ -5,26 +5,6 @@ import { gsap } from "@/lib/gsapConfig";
 import QIMG from "@/public/qimg.webp";
 import { usePathname } from "next/navigation";
 
-// const slides = [
-//   {
-//     image: QIMG,
-//     quote:
-//       "Good design is as little design as possible. Emphasizing purposeful simplicity, where design and function are distilled to their essence.",
-//     author: "Dieter Rams",
-//   },
-//   {
-//     image: QIMG, // replace with another
-//     quote:
-//       "Design is not just what it looks like and feels like. Design is how it works.",
-//     author: "Steve Jobs",
-//   },
-//   {
-//     image: QIMG, // replace with another
-//     quote: "Styles come and go. Good design is a language, not a style.",
-//     author: "Massimo Vignelli",
-//   },
-// ];
-
 export default function QuoteSlider() {
   const [current, setCurrent] = useState(0);
   const progressRef = useRef(null);
@@ -85,9 +65,9 @@ export default function QuoteSlider() {
   }, [current, quotes]);
 
   return (
-    <div className="w-full p-2.5 relative">
+    <div className="w-full p-2.5 pb-0 relative">
       <div
-        className="w-full h-[540px] flex flex-row overflow-hidden"
+        className="w-full h-[560px] flex flex-row overflow-hidden"
         style={{
           background: "linear-gradient(180deg, #2E2323 0%, #3F0E00 80%)",
         }}
