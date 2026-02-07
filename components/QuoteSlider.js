@@ -46,7 +46,7 @@ export default function QuoteSlider() {
     gsap.fromTo(
       progressRef.current,
       { width: 0 },
-      { width: "100%", duration: 5, ease: "linear" },
+      { width: "100%", duration: 8, ease: "linear" },
     );
 
     // Fade-in
@@ -59,7 +59,7 @@ export default function QuoteSlider() {
     // Auto-slide
     intervalRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % quotes.length);
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(intervalRef.current);
   }, [current, quotes]);

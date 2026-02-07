@@ -11,7 +11,7 @@ import InertiaPlugin from "gsap/InertiaPlugin";
 import EdgeW from "@/public/EdgeW.svg";
 import EdgeR from "@/public/EdgeR.svg";
 import AOI from "@/public/DOF.webp";
-import DOF from "@/public/AOI.webp";
+import DOF from "@/public/AOI2.webp";
 import QuoteSlider from "./QuoteSlider";
 
 export default function AboutSection() {
