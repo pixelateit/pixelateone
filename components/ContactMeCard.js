@@ -404,6 +404,7 @@ export default function ContactMeCard({ contactShow, contactHide }) {
           alt="Contact Me Background"
           width={420}
           height={560}
+          unoptimized
           priority
           className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none select-none z-0"
         />
