@@ -10,7 +10,8 @@ import { Draggable } from "gsap/Draggable";
 import InertiaPlugin from "gsap/InertiaPlugin";
 import EdgeW from "@/public/EdgeW.svg";
 import EdgeR from "@/public/EdgeR.svg";
-import AOI from "@/public/aoi.webp";
+import AOI from "@/public/DOF.webp";
+import DOF from "@/public/AOI.webp";
 import QuoteSlider from "./QuoteSlider";
 
 export default function AboutSection() {
@@ -518,7 +519,7 @@ export default function AboutSection() {
             </div>
             <div className="w-full h-full relative max-w-[740px]">
               <Image
-                src={AOI}
+                src={DOF}
                 alt="main"
                 className="w-full h-full object-cover"
               />
