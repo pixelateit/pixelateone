@@ -4,7 +4,7 @@ import Image from "next/image";
 import LogoLongWoB from "@/public/logoLongWoB.svg";
 import PaperTexture from "@/public/home/PaperTexture.webp";
 import TvStatic from "@/public/tvstatic.gif";
-import { Posters } from "@/public/home/posters/index.js";
+import { menuGifs } from "@/public/home/menuGifs/index.js";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import PropTypes from "prop-types";
@@ -51,7 +51,7 @@ export default function MenuContainer({ menuOpen, menuClose }) {
             duration: 0.6,
             stagger: 0.1,
             ease: "power2.out",
-          }
+          },
         );
       } else {
         menuClose();
@@ -80,7 +80,7 @@ export default function MenuContainer({ menuOpen, menuClose }) {
             duration: 0.6,
             stagger: 0.1,
             ease: "power2.out",
-          }
+          },
         ).fromTo(
           [cont2.current, cont1.current],
           { display: "flex" },
@@ -88,7 +88,7 @@ export default function MenuContainer({ menuOpen, menuClose }) {
             display: "none",
             duration: 0.6,
             onComplete: () => setShowMenu(false),
-          }
+          },
         );
       } else {
         setShowMenu(false); // Fallback
@@ -108,7 +108,7 @@ export default function MenuContainer({ menuOpen, menuClose }) {
             duration: 0.6,
             stagger: 0.1,
             ease: "power2.out",
-          }
+          },
         );
       });
     }
@@ -200,7 +200,7 @@ export default function MenuContainer({ menuOpen, menuClose }) {
 
               <div className="w-full">
                 {/*Monitor*/}
-                <div className="w-full h-[240px] lg:h-[280px] xl:h-[340px] flex flex-col border border-[#1c1c1c] overflow-hidden rounded-[5px]">
+                <div className="w-full h-[208px] lg:h-[231px] xl:h-[297px] flex flex-col border border-[#1c1c1c] overflow-hidden rounded-[5px]">
                   <div className="w-full flex flex-row gap-[5px] px-3 py-2.5">
                     <div className="w-2.5 h-2.5 rounded-full border border-[#1c1c1c]"></div>
                     <div className="w-2.5 h-2.5 rounded-full border border-[#1c1c1c]"></div>
@@ -217,11 +217,11 @@ export default function MenuContainer({ menuOpen, menuClose }) {
                     >
                       {hoveredPosterIndex !== null && (
                         <Image
-                          src={Posters[hoveredPosterIndex]}
+                          src={menuGifs[hoveredPosterIndex]}
                           alt="Hover Preview"
                           width={464}
-                          height={290}
-                          className="w-full h-full object-cover absolute top-0 left-0 right-0 bottom-0 transition-opacity duration-300 opacity-100"
+                          height={260}
+                          className="w-full h-full object-fill absolute top-0 left-0 right-0 bottom-0 transition-opacity duration-300 opacity-100 scale-[1.02]"
                         />
                       )}
                     </div>
@@ -231,18 +231,18 @@ export default function MenuContainer({ menuOpen, menuClose }) {
                 {/*Menu Discription*/}
                 <div className="w-full mt-6 px-2">
                   <div
-                    className="max-w-[280px] w-full flex flex-col gap-5 font-archivo font-normal text-xs text-[#5C5C5C]"
+                    className="max-w-[320px] w-full flex flex-col gap-5 font-archivo font-normal text-xs text-[#5C5C5C]"
                     style={{ fontSize: "clamp(10px, 0.83vw, 16px)" }}
                   >
                     <p>
-                      Whether you are launching a blog, I am here to provide you
-                      with the digital wizardry that makes your project shine
-                      brighter than a supernova.
+                      Every section reflects a different discipline within my
+                      practice — from product design and systems thinking to
+                      branding, motion, and visual experimentation.
                     </p>
 
                     <p>
-                      I am here to provide you with the digital shine brighter
-                      than a supernova.
+                      Explore them individually to understand not just the
+                      outcomes, but the thinking behind each build.
                     </p>
                   </div>
                 </div>
