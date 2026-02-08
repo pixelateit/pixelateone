@@ -9,22 +9,29 @@ export default async function sitemap() {
   const blogs = await getBlogs();
   const works = await getWorks();
 
+  // 🔹 Static routes
+  const staticRoutes = [
+    "",
+    "/about",
+    "/works",
+    "/posters",
+    "/profiles",
+    "/miscs",
+    "/blogs",
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+  }));
+
   const blogUrls = blogs.map((post) => ({
     url: `${baseUrl}/blogs/${post.slug}`,
     lastModified: post.updatedAt || new Date(),
   }));
 
   const workUrls = works.map((item) => ({
-    url: `${baseUrl}/works/${item.id}`,
+    url: `${baseUrl}/works/${item._id}`,
     lastModified: item.updatedAt || new Date(),
   }));
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-    },
-    ...blogUrls,
-    ...workUrls,
-  ];
+  return [...staticRoutes, ...blogUrls, ...workUrls];
 }
