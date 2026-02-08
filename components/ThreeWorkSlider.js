@@ -73,7 +73,7 @@ const ThreeWorkSlider = () => {
     gsap.fromTo(
       textRef.current,
       { opacity: 0, y: 50, scale: 0.9 },
-      { opacity: 1, y: 0, scale: 1.5, duration: 1.5, ease: "power2.out" }
+      { opacity: 1, y: 0, scale: 1.5, duration: 1.5, ease: "power2.out" },
     );
   }, []);
 
@@ -103,7 +103,7 @@ const ThreeWorkSlider = () => {
         duration: 1.5,
         ease: "power2.out",
       },
-      "-=1.2"
+      "-=1.2",
     );
   }, [loading]);
 
@@ -127,7 +127,7 @@ const ThreeWorkSlider = () => {
       45,
       window.innerWidth / window.innerHeight,
       0.1,
-      100
+      100,
     );
     if (window.innerWidth < 500) {
       camera.position.z = 6;
@@ -217,7 +217,7 @@ const ThreeWorkSlider = () => {
           material.needsUpdate = true;
         },
         undefined,
-        (err) => console.warn("Image load failed", err)
+        (err) => console.warn("Image load failed", err),
       );
 
       const labelText =
@@ -280,7 +280,7 @@ const ThreeWorkSlider = () => {
             onComplete: () => {
               triggerTransition(dynamicHref);
             },
-          }
+          },
         );
       }
     };
@@ -350,7 +350,7 @@ const ThreeWorkSlider = () => {
         const wheelDelta = e.deltaY;
         targetDistortionFactor = Math.min(
           1.0,
-          targetDistortionFactor + Math.abs(wheelDelta) * 0.001
+          targetDistortionFactor + Math.abs(wheelDelta) * 0.001,
         );
         targetPosition -= wheelDelta * settings.wheelSensitivity;
         isScrolling = true;
@@ -359,7 +359,7 @@ const ThreeWorkSlider = () => {
         clearTimeout(window.scrollTimeout);
         window.scrollTimeout = setTimeout(() => (isScrolling = false), 150);
       },
-      { passive: false }
+      { passive: false },
     );
 
     const handleTouchStart = (e) => {
@@ -375,7 +375,7 @@ const ThreeWorkSlider = () => {
       touchLastX = touchX;
       targetDistortionFactor = Math.min(
         1.0,
-        targetDistortionFactor + Math.abs(deltaX) * 0.02
+        targetDistortionFactor + Math.abs(deltaX) * 0.02,
       );
       targetPosition -= deltaX * settings.touchSensitivity;
       isScrolling = true;
@@ -387,7 +387,7 @@ const ThreeWorkSlider = () => {
         autoScrollSpeed = -velocity * settings.momentumMultiplier * 0.05;
         targetDistortionFactor = Math.min(
           1.0,
-          Math.abs(velocity) * 3 * settings.distortionSensitivity
+          Math.abs(velocity) * 3 * settings.distortionSensitivity,
         );
       }
       isScrolling = true;
@@ -415,7 +415,7 @@ const ThreeWorkSlider = () => {
         targetPosition += autoScrollSpeed;
         autoScrollSpeed *= Math.max(
           0.92,
-          0.97 - Math.abs(autoScrollSpeed) * 0.5
+          0.97 - Math.abs(autoScrollSpeed) * 0.5,
         );
         if (Math.abs(autoScrollSpeed) < 0.001) autoScrollSpeed = 0;
       }
@@ -435,7 +435,7 @@ const ThreeWorkSlider = () => {
       if (avgVelocity > 0.05) {
         targetDistortionFactor = Math.max(
           targetDistortionFactor,
-          Math.min(1.0, velocity * 0.1)
+          Math.min(1.0, velocity * 0.1),
         );
       }
 
@@ -555,7 +555,7 @@ const ThreeWorkSlider = () => {
       />
 
       {works.length === 0 && (
-        <div className="w-full z-10 h-screen absolute top-0 left-0  bg-black flex flex-col justify-center items-center px-5">
+        <div className="w-full z-10 h-screen absolute top-0 left-0  bg-black flex flex-col justify-start items-end px-4 py-8 md:p-10">
           <span className="font-archivo font-medium text-white text-base text-center">
             No work/project found.
           </span>

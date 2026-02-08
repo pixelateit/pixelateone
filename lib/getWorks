@@ -1,0 +1,7 @@
+import { dbConnect } from "@/lib/dbConnect";
+import Work from "@/models/Work";
+
+export async function getWorks() {
+  await dbConnect();
+  return Work.find().lean();
+}
