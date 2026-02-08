@@ -10,6 +10,7 @@ import BrainImg from "@/public/BrainImg.png";
 import BulbImg from "@/public/BulbImg.png";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import PageLink from "@/components/PageLink";
 
 export default function AllBlogs() {
   const [blogs, setBlogs] = useState([]);
@@ -165,10 +166,10 @@ export default function AllBlogs() {
         </div>
 
         {firstLoad ? (
-          <div className="w-full px-6 pb-20 grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 grid-flow-row gap-1">
-            <div className="flex w-full animate-pulse cursor-none bg-[#121212]/80 rounded-[5px] h-[360px]" />
-            <div className="flex w-full animate-pulse cursor-none bg-[#121212]/80 rounded-[5px] h-[600px]" />
-            <div className="flex w-full animate-pulse cursor-none bg-[#121212]/80 rounded-[5px] h-[280px]" />
+          <div className="w-full px-6 pb-20 grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 grid-flow-row gap-4">
+            <div className="flex w-full animate-pulse cursor-none bg-[#121212]/24 h-[360px]" />
+            <div className="flex w-full animate-pulse cursor-none bg-[#121212]/24 h-[600px]" />
+            <div className="flex w-full animate-pulse cursor-none bg-[#121212]/24 h-[280px]" />
           </div>
         ) : (
           <div className="w-full px-5 md:px-10 lg:px-0 z-10">
@@ -178,7 +179,7 @@ export default function AllBlogs() {
               columnClassName="bg-clip-padding"
             >
               {blogs.map((blog) => (
-                <Link
+                <PageLink
                   key={blog._id}
                   className="w-full flex flex-col mb-6 group cursor-pointer"
                   href={`/blogs/${blog.slug}`}
@@ -196,13 +197,13 @@ export default function AllBlogs() {
                   </div>
                   <div className="py-2 px-2 flex flex-col gap-0.5">
                     <span
-                      className="font-archivo font-semibold text-xl text-white group-hover:text-white/80 transition duration-500 w-full"
+                      className="font-archivo font-medium text-xl text-white group-hover:text-white/80 transition duration-500 w-full"
                       style={{ lineHeight: "1.2em" }}
                     >
                       {blog.title}
                     </span>
                   </div>
-                </Link>
+                </PageLink>
               ))}
             </Masonry>
           </div>

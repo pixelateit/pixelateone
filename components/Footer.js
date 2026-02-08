@@ -213,9 +213,9 @@ export default function Footer() {
                       lineHeight: "28px",
                     }}
                   >
-                    A
+                    E
                   </span>
-                  rticles
+                  xtras
                 </span>
               </h5>
               <div className="w-full flex flex-col gap-2 items-center">
