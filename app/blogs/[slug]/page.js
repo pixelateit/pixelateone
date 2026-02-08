@@ -1,24 +1,17 @@
 // app/blogs/[slug]/page.js
 
 import BlogReadPage from "@/components/BlogReadPage";
+import { getBlogBySlug } from "@/lib/getBlogBySlug";
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/blogs/slug/${slug}`,
-    {
-      cache: "no-store",
-    },
-  );
+  const blog = await getBlogBySlug(params.slug);
 
-  if (!res.ok) {
+  if (!blog) {
     return {
       title: "Blog",
       description: "Blog post",
     };
   }
-
-  const { blog } = await res.json();
 
   return {
     title: blog.metaTitle || blog.title,
