@@ -172,7 +172,7 @@ export default function Footer() {
               className="text-[#AAAAAA] font-archivo-narrow text-2xl font-bold uppercase text-center"
               style={{ letterSpacing: "-0.02em" }}
             >
-              <span>
+              <span className="text-[#242222]">
                 <span
                   className="font-kings font-normal text-[28px]"
                   style={{

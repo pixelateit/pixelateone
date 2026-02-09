@@ -65,7 +65,7 @@ const MiscGrid = () => {
         gsap.fromTo(
           infoRef.current,
           { opacity: 0, scale: 0.3 },
-          { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
+          { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" },
         );
       }
     });
@@ -82,7 +82,7 @@ const MiscGrid = () => {
           duration: 0.8,
           ease: "power2.out",
           onComplete: () => setInfoShow(false),
-        }
+        },
       );
     }
   };
@@ -266,7 +266,7 @@ const MiscGrid = () => {
       return match[1]
         .split(",")
         .map((v, i) =>
-          i < 3 ? parseFloat(v.trim()) / 255 : parseFloat(v.trim() || 1)
+          i < 3 ? parseFloat(v.trim()) / 255 : parseFloat(v.trim() || 1),
         );
     };
 
@@ -393,7 +393,7 @@ const MiscGrid = () => {
 
           imageTextures.push(texture);
           textTextures.push(
-            createTextTexture(project.title, formattedDate(project.date))
+            createTextTexture(project.title, formattedDate(project.date)),
           );
         });
       });
@@ -405,7 +405,7 @@ const MiscGrid = () => {
       mousePosition.y = event.clientY - rect.top;
       plane?.material.uniforms.uMousePos.value.set(
         mousePosition.x,
-        mousePosition.y
+        mousePosition.y,
       );
     };
 
@@ -518,7 +518,7 @@ const MiscGrid = () => {
       renderer.setPixelRatio(window.devicePixelRatio);
       plane?.material.uniforms.uResolution.value.set(
         container.offsetWidth,
-        container.offsetHeight
+        container.offsetHeight,
       );
     };
 
@@ -557,7 +557,7 @@ const MiscGrid = () => {
 
         renderer.domElement.removeEventListener(
           "mousemove",
-          updateMousePosition
+          updateMousePosition,
         );
       });
     };
@@ -592,7 +592,7 @@ const MiscGrid = () => {
       const bgColor = rgbaToArray(config.backgroundColor);
       renderer.setClearColor(
         new THREE.Color(bgColor[0], bgColor[1], bgColor[2]),
-        bgColor[3]
+        bgColor[3],
       );
 
       container.appendChild(renderer.domElement);
@@ -606,7 +606,7 @@ const MiscGrid = () => {
         uResolution: {
           value: new THREE.Vector2(
             container.offsetWidth,
-            container.offsetHeight
+            container.offsetHeight,
           ),
         },
         uBorderColor: {
@@ -699,7 +699,7 @@ const MiscGrid = () => {
       <DragCursor state={cursorState} />
       {infoShow && (
         <div
-          className="w-[240px] p-5 bg-black/80 backdrop-blur-sm border border-white/20 absolute top-[80px] right-6 z-[9999999]"
+          className="w-[240px] p-5 bg-black/80 backdrop-blur-sm border border-white/20 absolute top-[80px] right-6 z-[9999]"
           ref={infoRef}
         >
           <div className="w-full flex flex-row justify-between items-center mb-2">

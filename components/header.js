@@ -54,7 +54,7 @@ export default function Header({ theme }) {
   return (
     <>
       <header
-        className={`flex w-full flex-row justify-between p-5  absolute top-0 z-20 `}
+        className={`flex w-full flex-row justify-between p-5  absolute top-0 z-99 `}
       >
         <div className="px-[5px] flex items-center">
           <PageLink href="/">

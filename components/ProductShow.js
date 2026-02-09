@@ -129,19 +129,38 @@ export default function ProductShow() {
               // ref={(el) => (imageRefs.current[index] = el)}
               className="w-[45vw] flex-shrink-0 rounded-xl overflow-hidden relative group"
             >
-              <Image
-                src={item.src}
-                alt={`Image ${index + 1}`}
-                priority
-                height={520}
-                width={9999}
-                className="w-full h-full duration-300 transform scale-100 aspect-auto group-hover:scale-110"
-              />
+              {item.type === "image" ? (
+                <Image
+                  src={item.src}
+                  alt={`Image ${index + 1}`}
+                  priority
+                  height={520}
+                  width={9999}
+                  className="w-full h-full duration-300 transform scale-100 aspect-auto group-hover:scale-120"
+                />
+              ) : (
+                <video
+                  autoPlay
+                  poster={item.poster.src}
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full aspect-auto object-cover pointer-events-none"
+                >
+                  <source
+                    src={
+                      typeof item.src === "string" ? item.src : item.src?.src
+                    }
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              )}
               <div className="absolute top-0 w-full flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity p-2.5 flex-wrap items-center">
                 {item.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="px-3 py-2 bg-white/90 rounded-full text-xs text-black font-archivo font-semibold uppercase"
+                    className="px-2 py-1 bg-white/90 rounded-full text-xs text-black font-archivo font-semibold uppercase"
                   >
                     {tag}
                   </span>
