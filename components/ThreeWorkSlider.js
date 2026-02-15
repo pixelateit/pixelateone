@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { gsap } from "@/lib/gsapConfig";
 import Image from "next/image";
 import workImage from "@/public/Works.svg";
+import workBG from "@/public/home/WorkBG.png";
 import DragCursor from "./dragCursor";
 import usePageTransition from "@/hooks/usePageTransition";
 
@@ -501,9 +502,16 @@ const ThreeWorkSlider = () => {
       className={`relative w-full overflow-hidden h-screen bg-[radial-gradient(182.46%_135.96%_at_50.06%_135.96%,_#000000_19.34%,_#000000_36.62%,_#000000_56.25%,_#000000_77.71%,_#000000_100%)]`}
     >
       <DragCursor state={cursorState} />
+      <Image
+        src={workBG}
+        alt="workBG"
+        width={1920}
+        height={1080}
+        className="absolute top-0 left-0 w-full h-full object-cover  pointer-events-none"
+      />
       <div
         ref={textRef}
-        className="flex flex-row absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none z-20 w-fit opacity-0 scale-50"
+        className="flex flex-row absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20 w-fit opacity-0 scale-50"
       >
         <h1
           className="w-fit font-bold flex flex-row"
