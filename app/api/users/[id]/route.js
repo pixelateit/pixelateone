@@ -4,6 +4,8 @@ import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User";
 import { adminStorage } from "@/lib/firebaseAdmin";
 import { v4 as uuidv4 } from "uuid";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function uploadFileToFirebase(file, folder) {
   const fileName = `${folder}/${Date.now()}-${uuidv4()}-${file.name}`;
@@ -32,6 +34,16 @@ function getPathFromUrl(url) {
 // ✅ Get user details
 export async function GET(req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = await params; // no await here
     const user = await User.findById(id).select("-password");
@@ -39,7 +51,7 @@ export async function GET(req, { params }) {
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -48,7 +60,7 @@ export async function GET(req, { params }) {
     console.error("GET user error:", err);
     return NextResponse.json(
       { success: false, message: err.message || "Server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -56,6 +68,16 @@ export async function GET(req, { params }) {
 // ✅ Update user
 export async function PUT(req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = await params;
     const formData = await req.formData();
@@ -72,7 +94,7 @@ export async function PUT(req, { params }) {
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -83,7 +105,7 @@ export async function PUT(req, { params }) {
           success: false,
           message: "Google-auth accounts cannot update profile.",
         },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -103,7 +125,7 @@ export async function PUT(req, { params }) {
       // Upload new picture
       const uploadedUrl = await uploadFileToFirebase(
         incomingImage,
-        "profile-pictures"
+        "profile-pictures",
       );
       updates.profilePicture = uploadedUrl;
     }
@@ -139,13 +161,13 @@ export async function PUT(req, { params }) {
         message: "Profile updated successfully!",
         user: updatedUser,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (err) {
     console.error("PUT /api/users/[id] failed:", err);
     return NextResponse.json(
       { success: false, message: err.message || "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -153,13 +175,23 @@ export async function PUT(req, { params }) {
 // ✅ Delete user
 export async function DELETE(req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = params;
 
     if (!id) {
       return NextResponse.json(
         { success: false, message: "User ID is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -167,7 +199,7 @@ export async function DELETE(req, { params }) {
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -178,7 +210,7 @@ export async function DELETE(req, { params }) {
           success: false,
           message: "Google accounts cannot be deleted from here",
         },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -203,13 +235,13 @@ export async function DELETE(req, { params }) {
         success: true,
         message: "User and profile picture deleted successfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (err) {
     console.error("❌ Delete error:", err);
     return NextResponse.json(
       { success: false, message: err.message || "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

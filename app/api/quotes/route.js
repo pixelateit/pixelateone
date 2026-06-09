@@ -3,6 +3,8 @@ import dbConnect from "@/lib/dbConnect";
 import { adminStorage } from "@/lib/firebaseAdmin";
 import { v4 as uuidv4 } from "uuid";
 import Quote from "@/models/Quote";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function uploadFileToFirebase(file, folder) {
   const fileName = `${folder}/${Date.now()}-${uuidv4()}-${file.name}`;
@@ -24,6 +26,16 @@ async function uploadFileToFirebase(file, folder) {
 
 export async function POST(req) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const formData = await req.formData();
     const textFields = {};
@@ -47,13 +59,13 @@ export async function POST(req) {
     await newQuote.save();
     return NextResponse.json(
       { success: true, message: "Quote created successfully", quote: newQuote },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error creating quote:", error);
     return NextResponse.json(
       { error: "Failed to create quote" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -84,7 +96,7 @@ export async function GET(req) {
     console.error("Error fetching quotes:", error);
     return NextResponse.json(
       { error: "Failed to fetch quotes" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

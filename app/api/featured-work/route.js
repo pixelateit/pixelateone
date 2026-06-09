@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Work from "@/models/Work";
 import FeaturedWork from "@/models/FeaturedWork";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function GET(req) {
   try {
@@ -34,7 +36,7 @@ export async function GET(req) {
     if (!featuredWorks || featuredWorks.length === 0) {
       return NextResponse.json(
         { success: false, error: "No featured works found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -55,7 +57,7 @@ export async function GET(req) {
     console.error("GET /api/featured-work failed:", err);
     return NextResponse.json(
       { error: "Failed to fetch featured works" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -63,6 +65,16 @@ export async function GET(req) {
 // POST create featured work
 export async function POST(req) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const body = await req.json();
     const featured = await FeaturedWork.create(body);
@@ -71,7 +83,7 @@ export async function POST(req) {
     console.error("POST /api/featured-work failed:", err);
     return NextResponse.json(
       { error: "Failed to create featured work" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

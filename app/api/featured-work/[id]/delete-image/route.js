@@ -2,13 +2,15 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import FeaturedWork from "@/models/FeaturedWork";
 import { adminStorage } from "@/lib/firebaseAdmin";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 // Extract Firebase path
 function getPathFromUrl(url) {
   try {
     const decoded = decodeURIComponent(url);
     const u = new URL(
-      decoded.startsWith("http") ? decoded : `https://${decoded}`
+      decoded.startsWith("http") ? decoded : `https://${decoded}`,
     );
 
     let path = "";
@@ -34,6 +36,16 @@ function getPathFromUrl(url) {
 
 export async function DELETE(req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
 
     const { id } = await params; // THIS is your custom workId, not _id
@@ -42,7 +54,7 @@ export async function DELETE(req, { params }) {
     if (!imageUrl || !field) {
       return NextResponse.json(
         { success: false, error: "Missing imageUrl or field" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -52,7 +64,7 @@ export async function DELETE(req, { params }) {
     if (!work) {
       return NextResponse.json(
         { success: false, error: "Featured work not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -77,13 +89,13 @@ export async function DELETE(req, { params }) {
 
     return NextResponse.json(
       { success: true, message: "Image deleted", work },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Delete error:", error);
     return NextResponse.json(
       { success: false, error: error.message || "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

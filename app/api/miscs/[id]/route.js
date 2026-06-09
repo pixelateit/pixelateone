@@ -4,6 +4,8 @@ import dbConnect from "@/lib/dbConnect";
 import Miscellaneous from "@/models/Miscellaneous";
 import { adminStorage } from "@/lib/firebaseAdmin";
 import { v4 as uuidv4 } from "uuid";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function uploadFileToFirebase(file, folder) {
   const fileName = `${folder}/${Date.now()}-${uuidv4()}-${file.name}`;
@@ -31,6 +33,16 @@ function getPathFromUrl(url) {
 
 export async function DELETE(_req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = params;
 
@@ -39,7 +51,7 @@ export async function DELETE(_req, { params }) {
     if (!deletedProfile) {
       return NextResponse.json(
         { success: false, message: "Profile not found!" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -53,7 +65,7 @@ export async function DELETE(_req, { params }) {
           .catch((err) => {
             console.warn(
               "Error deleting thumbnail from Firebase:",
-              err.message
+              err.message,
             );
           });
       }
@@ -67,7 +79,7 @@ export async function DELETE(_req, { params }) {
         message: "Profile deleted from DB and Firebase!",
         // profile: deletedProfile,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error deleting profile:", error);
@@ -77,13 +89,23 @@ export async function DELETE(_req, { params }) {
         message: "Failed to delete profile!",
         details: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function PUT(req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = await params;
     const formData = await req.formData();
@@ -101,7 +123,7 @@ export async function PUT(req, { params }) {
     if (!miscs) {
       return NextResponse.json(
         { success: false, error: "Profile not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -118,7 +140,7 @@ export async function PUT(req, { params }) {
       }
       updates.thumbnail = await uploadFileToFirebase(
         incomingThumbnail,
-        "miscs"
+        "miscs",
       );
     } else if (incomingThumbnail === "") {
       // User removed the thumbnail
@@ -144,7 +166,7 @@ export async function PUT(req, { params }) {
 
     return NextResponse.json(
       { success: true, miscs: updatedMiscs },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error updating misc project:", error);
@@ -153,7 +175,7 @@ export async function PUT(req, { params }) {
         success: false,
         error: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -167,7 +189,7 @@ export async function GET(_req, { params }) {
     if (!miscs) {
       return NextResponse.json(
         { success: false, message: "Profile not found!" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json({ success: true, miscs }, { status: 200 });
@@ -179,7 +201,7 @@ export async function GET(_req, { params }) {
         message: "Failed to fetch miscs!",
         details: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

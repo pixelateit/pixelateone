@@ -4,6 +4,8 @@ import dbConnect from "@/lib/dbConnect";
 import CompanyProfile from "@/models/CompanyProfile";
 import { adminStorage } from "@/lib/firebaseAdmin";
 import { v4 as uuidv4 } from "uuid";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function uploadFileToFirebase(file, folder) {
   const fileName = `${folder}/${Date.now()}-${uuidv4()}-${file.name}`;
@@ -28,7 +30,7 @@ function getPathFromUrl(url) {
   try {
     const decoded = decodeURIComponent(url);
     const u = new URL(
-      decoded.startsWith("http") ? decoded : `https://${decoded}`
+      decoded.startsWith("http") ? decoded : `https://${decoded}`,
     );
 
     let path = "";
@@ -54,6 +56,16 @@ function getPathFromUrl(url) {
 
 export async function DELETE(_req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = await params;
 
@@ -62,7 +74,7 @@ export async function DELETE(_req, { params }) {
     if (!deletedProfile) {
       return NextResponse.json(
         { success: false, message: "Profile not found!" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     const fileUrls = [];
@@ -84,7 +96,7 @@ export async function DELETE(_req, { params }) {
             console.error(`Failed to delete file from Firebase: ${path}`, err);
           }
         }
-      })
+      }),
     );
     await CompanyProfile.findByIdAndDelete(id);
 
@@ -93,7 +105,7 @@ export async function DELETE(_req, { params }) {
         success: true,
         message: "Profile deleted from DB and Firebase!",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error deleting profile:", error);
@@ -103,13 +115,23 @@ export async function DELETE(_req, { params }) {
         message: "Failed to delete profile!",
         details: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function PUT(req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = await params;
     const formData = await req.formData();
@@ -126,7 +148,7 @@ export async function PUT(req, { params }) {
     if (!profile) {
       return NextResponse.json(
         { success: false, error: "Profile not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -146,7 +168,7 @@ export async function PUT(req, { params }) {
       }
       updates.thumbnail = await uploadFileToFirebase(
         incomingThumbnail,
-        "profiles"
+        "profiles",
       );
     } else if (incomingThumbnail === "") {
       if (profile.thumbnail) {
@@ -190,7 +212,7 @@ export async function PUT(req, { params }) {
 
     return NextResponse.json(
       { success: true, message: "Profile updated", profile: profileUpdates },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error updating profile:", error);
@@ -200,7 +222,7 @@ export async function PUT(req, { params }) {
         error: "Failed to update profile",
         details: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -214,7 +236,7 @@ export async function GET(_req, { params }) {
     if (!profile) {
       return NextResponse.json(
         { success: false, message: "Profile not found!" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json({ success: true, profile }, { status: 200 });
@@ -226,7 +248,7 @@ export async function GET(_req, { params }) {
         message: "Failed to fetch profile!",
         details: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

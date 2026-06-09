@@ -47,7 +47,7 @@ export async function GET(_req, { params }) {
     if (!blog)
       return NextResponse.json(
         { success: false, message: "Blog not found" },
-        { status: 404 }
+        { status: 404 },
       );
 
     // ✅ Fetch author name if available
@@ -63,23 +63,24 @@ export async function GET(_req, { params }) {
     console.error("Error fetching blog:", err);
     return NextResponse.json(
       { success: false, error: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function PUT(req, { params }) {
   try {
-    await dbConnect();
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
       return NextResponse.json(
         { success: false, message: "Unauthorized" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
+    await dbConnect();
     const formData = await req.formData();
     const updates = {};
 
@@ -146,7 +147,7 @@ export async function PUT(req, { params }) {
     if (!updatedBlog) {
       return NextResponse.json(
         { success: false, message: "Blog not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -155,28 +156,31 @@ export async function PUT(req, { params }) {
     console.error("❌ Error updating blog:", err);
     return NextResponse.json(
       { success: false, error: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function DELETE(_req, { params }) {
   try {
-    await dbConnect();
     const session = await getServerSession(authOptions);
-    if (!session?.user?.id)
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
       return NextResponse.json(
         { success: false, message: "Unauthorized" },
-        { status: 401 }
+        { status: 401 },
       );
+    }
 
+    await dbConnect();
     const { id } = params;
 
     const deletedBlog = await Blog.findByIdAndDelete(id);
     if (!deletedBlog)
       return NextResponse.json(
         { success: false, message: "Blog not found" },
-        { status: 404 }
+        { status: 404 },
       );
 
     // Delete thumbnail
@@ -200,7 +204,7 @@ export async function DELETE(_req, { params }) {
     console.error("Error deleting blog:", err);
     return NextResponse.json(
       { success: false, error: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

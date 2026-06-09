@@ -4,6 +4,8 @@ import dbConnect from "@/lib/dbConnect";
 import Quote from "@/models/Quote";
 import { adminStorage } from "@/lib/firebaseAdmin";
 import { v4 as uuidv4 } from "uuid";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function uploadFileToFirebase(file, folder) {
   const fileName = `${folder}/${Date.now()}-${uuidv4()}-${file.name}`;
@@ -31,6 +33,16 @@ function getPathFromUrl(url) {
 
 export async function DELETE(_req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = params;
     const deletedQuote = await Quote.findByIdAndDelete(id);
@@ -38,7 +50,7 @@ export async function DELETE(_req, { params }) {
     if (!deletedQuote) {
       return NextResponse.json(
         { success: false, message: "Quote not found!" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     // Delete image
@@ -55,19 +67,29 @@ export async function DELETE(_req, { params }) {
     }
     return NextResponse.json(
       { success: true, message: "Quote deleted successfully" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error deleting quote:", error);
     return NextResponse.json(
       { error: "Failed to delete quote" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function GET(_req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = params;
     const quote = await Quote.findById(id);
@@ -75,7 +97,7 @@ export async function GET(_req, { params }) {
     if (!quote) {
       return NextResponse.json(
         { success: false, message: "Quote not found!" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -84,7 +106,7 @@ export async function GET(_req, { params }) {
     console.error("Error fetching quote:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch quote" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -92,6 +114,16 @@ export async function GET(_req, { params }) {
 // Quote Update Handler: PUT /api/quotes/:id
 export async function PUT(req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = await params;
 
@@ -109,7 +141,7 @@ export async function PUT(req, { params }) {
     if (!existingQuote) {
       return NextResponse.json(
         { success: false, message: "Quote not found!" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -167,13 +199,13 @@ export async function PUT(req, { params }) {
         message: "Quote updated successfully",
         quote: updatedQuote,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error updating quote:", error);
     return NextResponse.json(
       { error: "Failed to update quote" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

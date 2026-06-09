@@ -4,6 +4,8 @@ import dbConnect from "@/lib/dbConnect";
 import Poster from "@/models/Posters";
 import { adminStorage } from "@/lib/firebaseAdmin";
 import { v4 as uuidv4 } from "uuid";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 // helper: upload file to Firebase
 async function uploadFileToFirebase(file, folder) {
@@ -27,6 +29,16 @@ async function uploadFileToFirebase(file, folder) {
 // POST - create poster
 export async function POST(req) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
 
     const formData = await req.formData();
@@ -37,7 +49,7 @@ export async function POST(req) {
     if (!posterName || !file) {
       return NextResponse.json(
         { success: false, message: "Poster name and image are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -56,7 +68,7 @@ export async function POST(req) {
     console.error("Error creating poster:", error);
     return NextResponse.json(
       { success: false, message: "Server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -94,7 +106,7 @@ export async function GET(req) {
     console.error("Error fetching posters:", error);
     return NextResponse.json(
       { success: false, message: "Server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

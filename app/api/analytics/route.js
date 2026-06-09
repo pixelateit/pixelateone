@@ -1,6 +1,8 @@
 // app/api/analytics/route.js
 import { NextResponse } from "next/server";
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const analyticsDataClient = new BetaAnalyticsDataClient({
   credentials: {
@@ -11,6 +13,16 @@ const analyticsDataClient = new BetaAnalyticsDataClient({
 
 export async function GET() {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     const propertyId = process.env.GA4_A_PROPERTY_ID;
 
     // --- 1️⃣ Historical Page Views (last 14 days)

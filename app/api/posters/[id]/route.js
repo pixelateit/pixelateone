@@ -4,6 +4,8 @@ import dbConnect from "@/lib/dbConnect";
 import Posters from "@/models/Posters";
 import { adminStorage } from "@/lib/firebaseAdmin";
 import { v4 as uuidv4 } from "uuid";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 // 🔑 Upload helper
 async function uploadFileToFirebase(file, folder) {
@@ -29,7 +31,7 @@ function getFilePathFromUrl(url) {
   try {
     const decoded = decodeURIComponent(url);
     const u = new URL(
-      decoded.startsWith("http") ? decoded : `https://${decoded}`
+      decoded.startsWith("http") ? decoded : `https://${decoded}`,
     );
 
     let path = "";
@@ -65,7 +67,7 @@ export async function GET(_req, { params }) {
     if (!poster) {
       return NextResponse.json(
         { success: false, error: "Poster not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -74,7 +76,7 @@ export async function GET(_req, { params }) {
     console.error("GET /api/posters/[id] failed:", err);
     return NextResponse.json(
       { success: false, error: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -84,6 +86,16 @@ export async function GET(_req, { params }) {
  */
 export async function PUT(req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = await params;
     const formData = await req.formData();
@@ -100,7 +112,7 @@ export async function PUT(req, { params }) {
     if (!poster) {
       return NextResponse.json(
         { success: false, error: "Poster not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -155,13 +167,13 @@ export async function PUT(req, { params }) {
 
     return NextResponse.json(
       { success: true, poster: updatedPoster },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (err) {
     console.error("PUT /api/posters/[id] failed:", err);
     return NextResponse.json(
       { success: false, error: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -171,6 +183,16 @@ export async function PUT(req, { params }) {
  */
 export async function DELETE(_req, { params }) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const { id } = await params;
 
@@ -178,7 +200,7 @@ export async function DELETE(_req, { params }) {
     if (!poster) {
       return NextResponse.json(
         { success: false, error: "Poster not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -200,13 +222,13 @@ export async function DELETE(_req, { params }) {
 
     return NextResponse.json(
       { success: true, message: "Poster deleted" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (err) {
     console.error("DELETE /api/posters/[id] failed:", err);
     return NextResponse.json(
       { success: false, error: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

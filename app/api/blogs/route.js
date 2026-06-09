@@ -32,17 +32,17 @@ async function uploadFileToFirebase(file, folder) {
 // --------------------
 export async function POST(req) {
   try {
-    await dbConnect();
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
       console.log("❌ Unauthorized: No session found");
       return NextResponse.json(
         { success: false, message: "Unauthorized" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
+    await dbConnect();
     const formData = await req.formData();
     const textFields = {};
     const fileMap = { thumbnail: "blogs" }; // Firebase folder name
@@ -81,7 +81,7 @@ export async function POST(req) {
     console.error("Error creating blog:", err);
     return NextResponse.json(
       { success: false, error: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -132,7 +132,7 @@ export async function GET(req) {
         } else {
           blog.author = "Unknown";
         }
-      })
+      }),
     );
 
     const total = await Blog.countDocuments(filter);
@@ -142,7 +142,7 @@ export async function GET(req) {
     console.error("❌ Error fetching blogs:", err);
     return NextResponse.json(
       { success: false, error: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

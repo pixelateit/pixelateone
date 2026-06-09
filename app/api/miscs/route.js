@@ -5,6 +5,8 @@ import dbConnect from "@/lib/dbConnect";
 import Miscellaneous from "@/models/Miscellaneous";
 import { adminStorage } from "@/lib/firebaseAdmin";
 import { v4 as uuidv4 } from "uuid";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function uploadFileToFirebase(file, folder) {
   const fileName = `${folder}/${Date.now()}-${uuidv4()}-${file.name}`;
@@ -26,6 +28,16 @@ async function uploadFileToFirebase(file, folder) {
 
 export async function POST(req) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const formData = await req.formData();
 
@@ -44,7 +56,7 @@ export async function POST(req) {
     if (!textFields.title) {
       return NextResponse.json(
         { success: false, message: "Title is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
     // Collect files
@@ -58,7 +70,7 @@ export async function POST(req) {
           (async () => {
             const url = await uploadFileToFirebase(value, folder);
             uploadedUrls[key] = url;
-          })()
+          })(),
         );
       }
     }
@@ -74,7 +86,7 @@ export async function POST(req) {
         message: "Misc project created",
         miscs: newMiscs,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error in POST /api/miscs:", error);
@@ -84,7 +96,7 @@ export async function POST(req) {
         message: "Failed to create misc project",
         details: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -116,7 +128,7 @@ export async function GET(req) {
     console.error("Error in GET /api/miscs:", error);
     return NextResponse.json(
       { error: "Failed to fetch misc projects", details: error.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

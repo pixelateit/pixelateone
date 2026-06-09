@@ -3,6 +3,8 @@ import dbConnect from "@/lib/dbConnect";
 import CompanyProfile from "@/models/CompanyProfile";
 import { adminStorage } from "@/lib/firebaseAdmin";
 import { v4 as uuidv4 } from "uuid";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function uploadFileToFirebase(file, folder) {
   const fileName = `${folder}/${Date.now()}-${uuidv4()}-${file.name}`;
@@ -24,6 +26,16 @@ async function uploadFileToFirebase(file, folder) {
 
 export async function POST(req) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      console.log("❌ Unauthorized: No session found");
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
     const formData = await req.formData();
 
@@ -51,7 +63,7 @@ export async function POST(req) {
             (async () => {
               const url = await uploadFileToFirebase(value, folder);
               uploadedUrls.sliderImages.push(url);
-            })()
+            })(),
           );
         } else {
           // single file
@@ -59,7 +71,7 @@ export async function POST(req) {
             (async () => {
               const url = await uploadFileToFirebase(value, folder);
               uploadedUrls[key] = url;
-            })()
+            })(),
           );
         }
       }
@@ -80,7 +92,7 @@ export async function POST(req) {
         message: "Company profile created",
         profile: newProfile,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error in POST /api/profiles:", error);
@@ -90,7 +102,7 @@ export async function POST(req) {
         message: "Failed to create company profile",
         details: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -136,7 +148,7 @@ export async function GET(req) {
     console.error("Error in GET /api/profiles:", error);
     return NextResponse.json(
       { error: "Failed to fetch profiles", details: error.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
